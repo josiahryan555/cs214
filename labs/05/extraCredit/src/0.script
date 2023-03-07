@@ -1,0 +1,9 @@
+Script started on 2021-03-05 13:06:48-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ clojure
+Clojure 1.10.1
+user=> (+1    1 2 3 4 5)
+15
+user=> 
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ exit
+
+Script done on 2021-03-05 13:07:40-0500

@@ -1,0 +1,32 @@
+closjure:			(add 8 9)
+
+*** House Keeping ****************************************************************
+-clj opens in-terminal compiler
+-to make file:
+   -mkdir clojure
+   -mkdir src in clojure
+   -make file there circle_area.clj  
+execute 
+-go to lab/01/clojure/ then 'clojure -m file_name'   to compile the src folder in the clojure folder
+
+*** General Advice **********************************************************
+-assume variables are immutabe
+-functions return the value of the last line executed
+-return and paramater types are determined at runtime
+-funcion circleArea()  variable: itsRadius
+-( ) parantheses around something calls it as a function
+
+*** Syntax *******************************************************************
+-1+2 => (+ 1 2)
+if stmt (if ( <expr> )  <stmt>   <stmt>  )
+			if stmts     else stmts
+Anonymous / lambda functions:
+  (fn [ParameterList] FunctionBody )   ; runction not remembered
+  (fn [x]  	    (+ x x) )
+(def squareSquare (fn [x] (* x x x x)))
+(map Math/abs [-1 2 -3 4 -5])
+(defn subtract-n [n sequence] (map (fn [x] (- x n)) sequence) )
+(filter (fn [x] (or (neg? x) (odd? x))) [-1 1 -2 2 -3 3 -4 4])
+(map (fn [x] (* x -1)) [1 -2 3 -4 5 -6 7 -8 9])
+(defn totalItems [seqOfSeqs] (reduce + (map count seqOfSeqs)) )
+(defn sumSquares [sequence] (reduce + (map (fn [x] (* x x)) sequence)))

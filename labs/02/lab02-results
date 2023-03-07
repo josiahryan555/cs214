@@ -1,0 +1,117 @@
+Script started on 2021-02-12 14:01:48-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ cat exa  xample6.lex example6.y
+%{
+#include <stdio.h>
+#include <stdlib.h>           /* atoi() */
+#include <string.h>           /* strcmp() */
+#include "example6.tab.h"
+%}
+%%
+[0-9]+                  yylval = atoi(yytext); return NUMBER;
+heat                    return TOKHEAT;
+on|off                  yylval = !strcmp(yytext,"on"); return STATE;
+set                     return TOKSET;
+temperature             return TOKTEMPERATURE;
+humidity 		return TOKHUMIDITY;
+\n                      /* ignore end of line */;
+[ \t]+                  /* ignore whitespace */;
+%u%
+
+%{
+#include <stdio.h>
+#include <string.h>
+
+/* declarations */
+int yylex (void);
+void yyerror (char const *);
+int yyparse(void);
+
+/* definitions */ 
+void yyerror(const char *str) {
+        fprintf(stderr,"error: %s\n",str);
+}
+ 
+int yywrap() {
+        return 1;
+} 
+ 
+int main() {
+        yyparse();
+} 
+
+%}
+
+%token NUMBER TOKHEAT STATE TOKSET TOKTEMPERATURE TOKHUMIDITY
+%%
+commands: /* empty */
+        | commands command
+        ;
+
+command:
+        heat_switch
+        | temperature_set
+	| humidity_set
+	;
+
+humidity_set:
+	TOKSET TOKHUMIDITY NUMBER
+	{
+		printf("\tHumidity set to %d\n",$3);
+	}
+	;
+
+heat_switch:
+        TOKHEAT STATE
+        {
+	 	if ($2) {  /* if STATE == 1 */
+                        printf("\tHeat turned on\n");
+                } else {
+                        printf("\tHeat turned off\n");
+                }
+	}
+        ;
+
+temperature_set:
+        TOKSET TOKTEMPERATURE NUMBER
+        {
+                printf("\tTemperature set to %d\n",$3);
+        }
+        ;
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ make
+make: 'example6' is up to date.
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ ./example6
+set temer   mperature 50
+	Temperature set to 50
+set humidity 100
+	Humidity set to 100
+turn      heater off
+er	Heat turned off
+heat on
+	Heat turned on
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ exit
+
+Script done on 2021-02-12 14:03:14-0500
+Flex Example 1: 
+	Near line 695:
+		I see a do statment that checks if the current state is accepting, if it is, then it sets two variables.  
+		a few while statements that do actions based on the current state	  
+	Near line 740 - 770:
+		a swich block with cases that respond to the users inputs and execute the commands that specified in my example1.lex file  (if start is typed, "Start command received\n" is printed)
+
+Flex Example 2:
+	when I typed in J_O_S_I_A-_H, it responded with 
+							WORD
+							_WORD
+							_WORD
+							_WORD
+							_WORD
+							-_WORD
+	It recognizes the letters as words, but doesnt recognize _ or - and so just prints them 
+
+Flex Example 3:
+	when I ran ./example3 < StudentInfo.h, it idintified every article that was used in the class definition, catagorizing every token as a KEYWORD, INDENTIFIER, PUNCTUATION, OPERATOR, DOUBLE, or INTEGER.
+	this is a first step toward parsing as there is a 'dictionary' that can recognize what is and isnt in the language and what each thing is seperatly in the language
+
+Flex Example 4:
+	terminal vs non-terminal: a terminal (heat_switch, temerature_set) they perform a function, and go to nothing else, while a non-terminal goes to a terminal, a non-terminal or a combination, but itself doesn't perfom a function
+	I don't see anything unexpected, It doesn't expressly say what temperature or what state it was set to however, which would be helpful.

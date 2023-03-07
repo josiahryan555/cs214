@@ -1,0 +1,24 @@
+Flex Example 1: 
+	Near line 695:
+		I see a do statment that checks if the current state is accepting, if it is, then it sets two variables.  
+		a few while statements that do actions based on the current state	  
+	Near line 740 - 770:
+		a swich block with cases that respond to the users inputs and execute the commands that specified in my example1.lex file  (if start is typed, "Start command received\n" is printed)
+
+Flex Example 2:
+	when I typed in J_O_S_I_A-_H, it responded with 
+							WORD
+							_WORD
+							_WORD
+							_WORD
+							_WORD
+							-_WORD
+	It recognizes the letters as words, but doesnt recognize _ or - and so just prints them 
+
+Flex Example 3:
+	when I ran ./example3 < StudentInfo.h, it idintified every article that was used in the class definition, catagorizing every token as a KEYWORD, INDENTIFIER, PUNCTUATION, OPERATOR, DOUBLE, or INTEGER.
+	this is a first step toward parsing as there is a 'dictionary' that can recognize what is and isnt in the language and what each thing is seperatly in the language
+
+Flex Example 4:
+	terminal vs non-terminal: a terminal (heat_switch, temerature_set) they perform a function, and go to nothing else, while a non-terminal goes to a terminal, a non-terminal or a combination, but itself doesn't perfom a function
+	I don't see anything unexpected, It doesn't expressly say what temperature or what state it was set to however, which would be helpful.

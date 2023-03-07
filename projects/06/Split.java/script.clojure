@@ -1,0 +1,93 @@
+Script started on 2021-03-12 13:08:58-0500
+]0;jr232@gold12: ~/Desktop/cs214/labs/06/06/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/labs/06/06/clojure[00m$ cat src/split.clj
+;;;; split.clj splits a string into two substrings.
+;;;;
+;;;; Input: aString, the string to be split,
+;;;;        pos, the index where aString is to be split.
+;;;; Output: the substring of aString before pos, and
+;;;;         the substring of aString from pos onwards.
+;;;;
+;;;; Usage: clojure -m split
+;;;;
+;;;; Begun by: Dr. Adams, for CS 214 at Calvin College.
+;;;; Completed by: Josiah Ryan
+;;;; Date: 03/12/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns split)      ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; split() splits a string into its two substrings.  
+;;; Receive: aString, the string to be split,         
+;;;          splitPos, the index where aString should be split.
+;;; PRE: 0 <= splitPos < the length of aString.
+;;; Return: the substring of aString before pos, and  
+;;;         the substring of aString from pos onwards.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn split [aString pos]
+  (let [ part1 (subs aString 0 pos )
+         part2 (subs aString pos) ] ; if end position is ommited, the end is assumed
+	 (vector part1 part2)	 
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; main function
+;;; Input: the string to be split,
+;;;        the index where it should be split.
+;;; Output: the two split parts of the string.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+  (print "To split a string, enter the string: ") (flush)
+  (let
+    [ aString (read-line) ]                      ; read the string
+    (print "Enter the split position: ") (flush)
+    (let 
+      [ pos (read)                               ; read the split pos.
+        result (split aString pos)               ; split the string
+        part1 (get result 0)                     ; retrieve the two
+        part2 (get result 1)                     ;  parts
+      ]
+                                                 ; display the parts
+      (printf (str "\nThe first part is \"%s\" and" 
+                    " the second part is \"%s\"\n\n")
+                       part1 part2)
+    )
+  )
+)
+
+]0;jr232@gold12: ~/Desktop/cs214/labs/06/06/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/labs/06/06/clojure[00m$ clojure -m c split
+To split a string, enter the string: hello
+Enter the split position: 0
+
+The first part is "" and the second part is "hello"
+
+]0;jr232@gold12: ~/Desktop/cs214/labs/06/06/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/labs/06/06/clojure[00m$ hello
+WARNING:root:could not open file '/etc/apt/sources.list'
+
+
+Command 'hello' not found, but can be installed with:
+
+snap install hello              # version 2.10, or
+apt  install hello            
+apt  install hello-traditional
+
+See 'snap info hello' for additional versions.
+
+]0;jr232@gold12: ~/Desktop/cs214/labs/06/06/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/labs/06/06/clojure[00m$ helloclojure -m split
+To split a string, enter the string: hello
+Enter the split position: 3
+
+The first part is "hel" and the second part is "lo"
+
+]0;jr232@gold12: ~/Desktop/cs214/labs/06/06/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/labs/06/06/clojure[00m$ clojure -m split
+To split a string, enter the string: hello
+Enter the split position: 5
+
+The first part is "hello" and the second part is ""
+
+]0;jr232@gold12: ~/Desktop/cs214/labs/06/06/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/labs/06/06/clojure[00m$ exit
+
+Script done on 2021-03-12 13:09:38-0500

@@ -1,0 +1,409 @@
+Script started on 2021-04-19 13:32:28-0400
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/java[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/java[00m$ cat Search.java
+/* Search.java finds the index of the specified value (99) in Java linked lists.
+ *
+ * Begun by: Dr. Adams, CS 214 at Calvin College.
+ * Completed by:  Josiah Ryan
+ * Date:          04/19/21
+ */
+
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.Collections;
+
+public class Search {
+
+  public static void main(String [] args) {
+
+    LinkedList<Integer> list1 = new LinkedList<Integer>();
+    LinkedList<Integer> list2 = new LinkedList<Integer>();
+    LinkedList<Integer> list3 = new LinkedList<Integer>();
+    LinkedList<Integer> list4 = new LinkedList<Integer>();
+
+    list1.add(99);    // 99, 88, 77, 66, 55
+    list1.add(88);    // Search is first
+    list1.add(77);
+    list1.add(66);  
+    list1.add(55);
+
+    list2.add(55);    // 55, 66, 77, 88, 99
+    list2.add(66);    // Search is last
+    list2.add(77);  
+    list2.add(88);  
+    list2.add(99);  
+  
+    list3.add(55);    // 55, 77, 99, 88, 66
+    list3.add(77);    // Search is in the middle
+    list3.add(99);  
+    list3.add(88);  
+    list3.add(66);  
+  
+    print(list1); 
+    System.out.println("Search of list1: " + search(list1, 99) );
+    System.out.println();
+    print(list2); 
+    System.out.println("Search of list2: " + search(list2, 99) );
+    System.out.println();
+    print(list3);
+    System.out.println("Search of list3: " + search(list3, 99) );
+    System.out.println();
+    print(list4);
+    System.out.println("Search of list4: " + search(list4, 99) );
+    System.out.println();
+   // display Searchima of the 4 lists...
+  }
+
+  /** print() displays a LinkedList on the console.
+   *
+   * @param: aList, a LinkedList<Integer>
+   * 
+   * Postcondition: the Integer values in aList
+   *                 have been displayed to System.out,
+   *                 separated by spaces.
+   */
+  public static void print(LinkedList<Integer> aList){
+    Iterator<Integer> listIterator = aList.iterator();
+    while (listIterator.hasNext()){
+        System.out.print(listIterator.next() + " ");
+    }
+    System.out.print('\n');
+      }
+
+  /* Receive: aList, a list of integers; and
+   *        aValue, an integer.
+   * Return: the position of aValue within aList, if aValue is present in aList;
+   *        -1, otherwise.
+   */
+  public static int search(LinkedList<Integer> aList, Integer aValue) {
+    Iterator<Integer> listIterator = aList.iterator();
+    Integer index = 0;
+    while (listIterator.hasNext()){
+        if (aValue == listIterator.next()) {
+          return index;
+        }
+        index += 1;
+    }
+    return -1;
+  }
+}
+
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/java[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/java[00m$ make
+make: 'Search.class' is up to date.
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/java[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/java[00m$ java Search
+99 88 77 66 55 
+Search of list1: 0
+
+55 66 77 88 99 
+Search of list2: 4
+
+55 77 99 88 66 
+Search of list3: 2
+
+
+Search of list4: -1
+
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/java[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/java[00m$ exit
+
+Script done on 2021-04-19 13:32:42-0400
+Script started on 2021-04-19 13:34:32-0400
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/ada[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/ada[00m$ make
+gnatbind  search.ali
+gnatlink  search.ali -o adaMax
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/ada[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/ada[00m$ ./adaMax
+          99          88          77          66          55
+          55          66          77          88          99
+          55          77          99          88          66
+
+The index of value 99 in list 1 is           0
+The index of value 99 in list 2 is           4
+The index of value 99 in list 3 is           2
+The index of value 99 in list 4 is          -1
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/ada[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/ada[00m$ exit
+
+Script done on 2021-04-19 13:34:43-0400
+Script started on 2021-04-19 13:29:26-0400
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/clojure[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/clojure[00m$ cat listOp    stOps.clj S search.clj
+cat: listOps.clj: No such file or directory
+cat: search.clj: No such file or directory
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/clojure[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/clojure[00m$ cat src/listOps.clj src/sear ch.. clj
+;; listOps.clj is a Clojure "module" for list operations.
+;;
+;; Begun by: Prof. Adams, CS 214 at Calvin College.
+;; Completed by:  Josiah Ryan
+;; Date:          04/16/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; maxOf2() finds the maximum of two values.  
+;; Receive: val1, val2, two values.  
+;; PRE: val1 and val2 can be compared using >.
+;; Return: the maximum of val1 and val2. 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn maxOf2 [val1 val2]
+  (if (> val1 val2)      ; if val1 > val2
+    val1                 ;   return val1
+    val2                 ; else return val2
+  )
+)
+
+;; using Clojure's built-in max and apply functions
+(defn listMax2 [aList]
+  (if (list? aList)       ; if aList is a list:
+    (if (empty? aList)    ;  if aList is empty:
+      nil                 ;    nil
+      (apply max aList)   ;  else apply max to 
+    )                     ;        the items in aList
+  )
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; indexSearch() is the internal component of listSearch. 
+;; Receive: aList, a list of values; aValue, an integer; index, start of index search (usually 0).    
+;; PRE: aList is a list 
+;;      values in aList can be compared using >.
+;; Return: the index of the specified value in aList, or -1 if aValue is not in the list      
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn indexSearch [list aValue index]
+  (if (> (count list) 0 )
+    (let [ val (first list) ]
+      (if (= val aValue)
+        index
+        (indexSearch (rest list) aValue (+ index 1))
+      )
+    )
+    nil
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; listSearch() is a wrapper function for indexSearch. 
+;; Receive: aList, a list of values; aValue, an integer.    
+;; PRE: aList is a list 
+;;      values in aList can be compared using >.
+;; Return: the index of the specified value in aList, or -1 if aValue is not in the list        
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn listSearch [aList aValue]
+  (if (list? aList) 
+    (indexSearch aList aValue 0)
+  )
+);; search.clj tests a function to search a list for a specified value.
+;;
+;; Output: three lists, and 
+;;          the results of calling a searchList() function on them.
+;;
+;; Usage: clojure -m search
+;;
+;; Begun by: Dr. Adams, CS 214 at Calvin College.
+;; Completed by:  Josiah Ryan
+;; Date:          04/16/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns search)
+
+(load "listOps")                      ; load module
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Function -main tests function listSearch(). 
+;; Output: the results of testing listSearch() on various lists.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn -main []
+  (let
+    [ 
+      list1 '(99 88 77 66 55)        ; 99 is first value
+      list2 (list 55 66 77 88 99)    ; 99 is last value
+      list3 (list 55 77 99 88 66)    ; 99 is middle value
+      emptyList '()                  ; list is empty
+    ]
+
+    (println)
+    (println "list1: " list1)        ; print list1,
+    (println "list2: " list2)        ;   list2,
+    (println "list3: " list3)        ;   list3,
+    (println "empty: " emptyList)    ;   list3,
+    (println)                        ;   and their maxima
+    (println "The index of value 99 in list1 is: " (listSearch list1 99))
+    (println "The index of value 99 in list2 is: " (listSearch list2 99))
+    (println "The index of value 99 in list3 is: " (listSearch list3 99))
+    (println)
+    (println "The index of value 99 in an empty list is: " (listSearch emptyList 99))
+    (println)
+  )
+)
+
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/clojure[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/clojure[00m$ [Kmake
+clojure -m search
+
+list1:  (99 88 77 66 55)
+list2:  (55 66 77 88 99)
+list3:  (55 77 99 88 66)
+empty:  ()
+
+The index of value 99 in list1 is:  0
+The index of value 99 in list2 is:  4
+The index of value 99 in list3 is:  2
+
+The index of value 99 in an empty list is:  nil
+
+]0;jr232@goldvm09: ~/Desktop/cs214/projects/11/clojure[01;32mjr232@goldvm09[00m:[01;34m~/Desktop/cs214/projects/11/clojure[00m$ exit
+
+Script done on 2021-04-19 13:30:07-0400
+Script started on 2021-04-21 12:53:48-0400
+]0;jr232@goldvm08: ~/Desktop/cs214/projects/11/ruby[01;32mjr232@goldvm08[00m:[01;34m~/Desktop/cs214/projects/11/ruby[00m$ cat list.rb
+cat: list.rb: No such file or directory
+]0;jr232@goldvm08: ~/Desktop/cs214/projects/11/ruby[01;32mjr232@goldvm08[00m:[01;34m~/Desktop/cs214/projects/11/ruby[00m$ cat List.rb
+# List.rb implements a linked list structure in Ruby.
+#
+# Begun by: Dr. Adams, for CS 214 at Calvin College.
+# Completed by:  Josiah Ryan
+# Date:          04/21/21
+#######################################################
+
+require 'test/unit/assertions'
+include Test::Unit::Assertions
+
+class List
+
+   # initialize a List to be empty
+   # Postcondition: first == nil and last == nil and length == 0
+
+   def initialize()
+      @first = nil
+      @last = nil
+      @length = 0
+   end
+
+
+   # create reader method for length
+
+   # Replace this line with a statement to define a 'length' reader method
+
+
+   # Am I empty?
+   # Return: length == 0
+   def empty?
+      @length == 0
+   end
+  
+   # append a value to me
+   # Receive: value, the item to be appended
+   # Postcondition: my last item is value and
+   #                 my length is one more than it was
+   def append(value)
+      newNode = Node.new(value, nil)
+
+      if empty?
+         @first = newNode
+      else
+         @last.next = newNode      
+      end
+
+      @last = newNode
+      @length += 1
+      self
+   end
+
+
+   # print my items
+   # Postcondition: my items have been displayed to the screen
+
+   def print()
+      temp = @first
+      while !temp.nil?
+         printf " #{temp.value}"
+         temp = temp.next
+      end
+   end
+
+
+   # find my maximum item
+   # Return: my maximum item
+
+   def maximum()
+      temp = @first
+      maxValue = -999999
+      while !temp.nil?
+         if temp.value > maxValue then 
+            maxValue = temp.value
+         end
+         temp = temp.next
+      end
+      return maxValue
+   end 
+
+   # search(val) searches through the linked list for the specified value
+   # Return: the index the value is found at, or -1 if it is not found
+   def search(val)
+      temp = @first
+      index = 0
+      while !temp.nil?
+         if temp.value == val then
+            return index                # if the value is the one searched for, return the index
+         end
+         temp = temp.next
+         index += 1
+      end      
+      return -1                         # if the value being searched for was not found, return -1
+   end
+
+
+end
+
+class Node
+   def initialize(item, link)
+      @value = item
+      @next = link
+   end
+
+   attr_reader :value
+   attr_accessor :next
+end
+]0;jr232@goldvm08: ~/Desktop/cs214/projects/11/ruby[01;32mjr232@goldvm08[00m:[01;34m~/Desktop/cs214/projects/11/ruby[00m$ l cat search.rb
+# search.rb finds the index of the specified value (99) in Ruby linked lists.
+#
+# Begun by: Dr. Adams for CS 214 at Calvin College.
+# Completed by:  Josiah Ryan
+# Date:          04/21/21
+#############################################################
+
+require './List'
+
+list1 = List.new
+list2 = List.new
+list3 = List.new
+list4 = List.new  #empty case
+
+list1.append(99).append(88).append(77).append(66).append(55)
+list2.append(55).append(66).append(77).append(88).append(99)
+list3.append(55).append(77).append(99).append(88).append(66)
+
+list1.print 
+puts
+puts "The index of 99 in list1: #{list1.search(99)}"
+
+list2.print 
+puts
+puts "The index of 99 in list2: #{list2.search(99)}"
+
+list3.print 
+puts
+puts "The index of 99 in list3: #{list3.search(99)}"
+
+puts " empty list"
+puts "The index of 99 in list4: #{list4.search(99)}"]0;jr232@goldvm08: ~/Desktop/cs214/projects/11/ruby[01;32mjr232@goldvm08[00m:[01;34m~/Desktop/cs214/projects/11/ruby[00m$ ruby search
+[1mTraceback[m (most recent call last):
+ruby: [1mNo such file or directory -- search ([1;4mLoadError[m[1m)
+[m]0;jr232@goldvm08: ~/Desktop/cs214/projects/11/ruby[01;32mjr232@goldvm08[00m:[01;34m~/Desktop/cs214/projects/11/ruby[00m$ ruby search.rb
+ 99 88 77 66 55
+The index of 99 in list1: 0
+ 55 66 77 88 99
+The index of 99 in list2: 4
+ 55 77 99 88 66
+The index of 99 in list3: 2
+ empty list
+The index of 99 in list4: -1
+]0;jr232@goldvm08: ~/Desktop/cs214/projects/11/ruby[01;32mjr232@goldvm08[00m:[01;34m~/Desktop/cs214/projects/11/ruby[00m$ exit
+
+Script done on 2021-04-21 12:54:32-0400

@@ -1,0 +1,29 @@
+Script started on 2021-03-05 18:27:39-0500
+]0;jr232@goldvm05: ~/Desktop/cs214/labs/05/extraCredit[01;32mjr232@goldvm05[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit[00m$ clojure
+Clojure 1.10.1
+user=> (defn incMaker [incValue] (fn [x] (+ x incValue) ))
+#'user/incMaker
+user=> (def inc5 (incMaker 5))
+#'user/inc5
+user=> (inc5 10)
+15
+user=> (inc3   5 35)
+40
+user=> (defn greetingBuilder [greeting] (fn [visitor] (str greeting ", " visitor "!") ))
+#'user/greetingBuilder
+user=> (def csGreeting (greetingBuilder "Welcome to CS 214"))
+#'user/csGreeting
+user=> (def englishGreeting (greetingBuilder "Hello"))
+#'user/englishGreeting
+user=> (def frenchGreeting (greetingBuilder "Bonjour"))
+#'user/frenchGreeting
+user=> (csGreeting "Ann")
+"Welcome to CS 214, Ann!"
+user=> (englishGreeting "Chris")
+"Hello, Chris!"
+user=> (frenchGreeting "Chris")
+"Bonjour, Chris!"
+user=> 
+]0;jr232@goldvm05: ~/Desktop/cs214/labs/05/extraCredit[01;32mjr232@goldvm05[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit[00m$ exit
+
+Script done on 2021-03-05 18:35:43-0500

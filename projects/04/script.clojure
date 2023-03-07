@@ -1,0 +1,87 @@
+Script started on 2021-03-05 12:58:56-0500
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ cat   /src    src. /factorial.clj
+;;;; factorial.clj recieves an integer n and prints n!
+;;;;
+;;;; Input: n integer
+;;;; Precondition: n is an integer
+;;;; Output: n! (n * (n-1) * (n-2) * ... * 1) -- if n is positive
+;;;;
+;;;; Completed by: Josiah Ryan
+;;;; Date: 3/3/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns factorial)                                 ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; factorial() .
+;;; Receive: n an integer and total - variable to be returned
+;;; Precondition: n is an integer
+;;; Output: n!
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; loop (indirect-recursion) version
+;(defn factorial [n total]
+  ;(let
+    ;[total 1]				; sets total (to be returned) to 1
+    ;(loop [i 1]                           ; set i = 1
+ ;     (when (>= n 1)                       ; if i <=
+  ;      (* total n)			    ;will calculate n!
+        ;(def i )	 			    ; increments i
+;	(recur (- n 1) total)            ; recursive call
+ ;      ) ; end when
+     ;) ; end loop
+   ;) ; end let [total 1]
+  ; (+ total 0)
+; ) ; end defn
+
+
+(defn factorial [n total]
+   (if (>= n 1)
+       (factorial (- n 1) (* total n))		; if 
+       total  	       	     	       	  	; else
+   ) ; end if
+   
+) ; end defn 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; -main is a 'driver' for the factorial function.
+;;; Input: n.
+;;; Output: n! 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+ (print "Enter an integer n, and recieve n!: ") (flush)
+ (let
+    [ n (int (read))
+      total (int 1) ]
+    ;[ n read ]						; recieves an input n
+    (println)
+    (printf "%s! = %s" n (factorial n total))  ;; prints out n! 
+    (println)
+ ) ; end let
+) ; end defn
+
+
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ co lou jure -m fun   factorial
+Enter an integer n, and recieve n!: 5
+
+5! = 120
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ clojure -m factorial
+Enter an integer n, and recieve n!: 4
+
+4! = 24
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ clojure -m factorial
+3Enter an integer n, and recieve n!: 
+
+3! = 6
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ clojure -m factorial
+Enter an integer n, and recieve n!: 2
+
+2! = 2
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ YAY!
+WARNING:root:could not open file '/etc/apt/sources.list'
+
+YAY!: command not found
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ exit
+
+Script done on 2021-03-05 13:00:06-0500

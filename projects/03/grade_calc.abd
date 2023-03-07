@@ -1,0 +1,22 @@
+--grade_calc.adb converts a grade out of 100 into its corresponding letter grade
+--
+--By: Josiah Ryan
+--Date: feb/22/21
+--
+--Input: grade, an int
+-- PRE: 0 < grade < 100
+--Output: the letter grade corresponding to the number grade given
+-----------------------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure Grade_Calc is 
+   
+   Year
+     
+     function GradeCalc(Grade : Integer) return Char is
+     
+     
+     
+     end YearCode

@@ -1,0 +1,428 @@
+Script started on 2021-03-17 17:46:40-0400
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ cat q Quadratic.jv ava
+/* Quadratic.java is a class and program that returns the roots of a quadratic equation
+ * input: a quadratic equation.
+ * 
+ * Begun by: Josiah Ryan Serita
+ * Completed by: Josiah Ryan
+ * Date        : 03/15/21
+ ***************************************************************/
+
+import java.util.Scanner;
+import java.lang.Math;
+
+public class Quadratic
+{
+  // main program
+  public static void main(String[] args)
+    {
+      Scanner keyboard = new Scanner(System.in);
+      // prompt for the string
+      System.out.println("\nEnter a quadratic equation of form 'ax^2 + bx + c': ");
+      
+      //gets a, b, c and converts them into ints
+      System.out.println("\nEnter a: ");
+      String str = keyboard.nextLine();
+      int a = Integer.parseInt(str);
+      System.out.println("\nEnter b: ");
+      str = keyboard.nextLine();
+      int b = Integer.parseInt(str);
+      System.out.println("\nEnter c: ");
+      str = keyboard.nextLine();
+      int c = Integer.parseInt(str);
+     
+      double[] resultList = new double[3];
+      
+      resultList = getRoots(a, b, c, resultList);
+      if (resultList[2] == 1.0) {     // resultList[2] = 1 if valid (no errors) and = 0 if invalid (errors occured)
+        System.out.println("\nThe roots are: \n " + resultList[0] + "\n" + resultList[1]); 
+      }
+    }
+  
+  /* getRoots() gets the roots of a quadratic equation
+   * Receive: 	a, b, c (ints) of form 'ax^2 + bx + c' and return list (double)
+   * Returns: result list with roots in resultList[0] & resultList[1]
+   *****************************************************/
+
+    public static double[] getRoots(int a, int b, int c, double[] resultList)
+   {	
+       if (a != 0) {
+	    double arg = Math.pow(b, 2.0) - 4 * a * c;
+	    if (arg >= 0) {
+		resultList[0] = (-b + Math.sqrt(arg))/(2*a);    // computes roots
+		resultList[1] = (-b - Math.sqrt(arg))/(2*a);    // computes roots
+    resultList[2] = 1.0;                              // tells main that the results are valid
+		return resultList;
+	    } else {
+		System.out.println("\n*** quadraticRoots(): b^2 - 4ac is negative!");
+		resultList[0] = resultList[1] = resultList[2] = 0;
+		return resultList;
+	    }
+       } else {  // a = 0
+	System.out.println ("\n*** QuadraticRoots(): a is zero!");
+         resultList[0] = resultList[1] = resultList[2] = 0 ;
+         return resultList;
+      }
+  }
+}
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ javac -deprecation Quadratic. 
+error: Class names, 'Quadratic', are only accepted if annotation processing is explicitly requested
+1 error
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ javac -deprecation Quadratic.java
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ java q Quadratic
+
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+
+Enter a: 
+3
+
+Enter b: 
+1
+
+Enter c: 
+8
+
+*** quadraticRoots(): b^2 - 4ac is negative!
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ java Quadratic
+
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+
+Enter a: 
+0
+
+Enter b: 
+5
+
+Enter c: 
+9
+
+*** QuadraticRoots(): a is zero!
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ java Quadratic
+
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+
+Enter a: 
+1
+
+Enter b: 
+5
+
+Enter c: 
+6
+
+The roots are: 
+ -2.0
+-3.0
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ java Quadratic
+
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+
+Enter a: 
+6
+
+Enter b: 
+11
+
+Enter c: 
+-35
+
+The roots are: 
+ 1.6666666666666667
+-3.5
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ exit
+
+Script done on 2021-03-17 17:47:56-0400
+Script started on 2021-03-17 17:24:56-0400
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ cat quadrt atic.adb
+-- quadratic.adb recieves a quadratic equation and returns its roots
+--
+-- Input: a, b, c (numbers)
+-- Precondition:  a, b, c of form ax^2 + bx + c  
+-- Output: roots of 'ax^2 + bx + c'
+--
+-- Completed by: Josiah Ryan
+-- Date: 03/17/21
+--------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Fixed, Ada.Numerics.Elementary_Functions;
+use  Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Fixed, Ada.Numerics.Elementary_Functions;
+
+procedure quadratic is
+
+   a, b, c, root1, root2     : Float;
+   valid                     : Boolean; -- used to determine if getRoots had an error
+
+   ------------------------------------------------
+   -- getRoots() returns roots of given inputs          
+   -- Receive: a, b, c of form ax^2 + bx + c     
+   -- PRE: a != 0 , and b^2 - 4ac >= 0
+   -- Passback: roots of the inputs when inputed into the above equation
+   ------------------------------------------------
+   procedure getRoots (a, b, c : in Float; root1, root2 : in out Float; valid : out Boolean) is 
+   arg : Float := Float((b * b) - 4.0 * a * c);
+   begin
+      if a /= 0.0  then 
+         if arg >= 0.0 then 
+            root1 := (-b + Sqrt (arg)) / (2.0 * a);
+            root2 := (-b - Sqrt (arg)) / (2.0 * a);
+            valid := true;
+         else
+            Put_Line("***Error getRoots(): b^2 -4ac is negative!" );
+            valid := false;
+         end if;
+      else
+         Put_Line("***Error getRoots(): a is zero!");
+         valid := false;
+      end if;
+
+   end getRoots;
+     
+
+
+begin                                           -- Prompt for input
+       
+   Put_Line("To get the roots of a quadratic equation, enter a, b, c of form ax^2 + bx + c:");
+   Put("Enter a:");
+   Get(a);
+   Put("Enter b:");
+   Get(b);
+   Put("Enter c:");
+   Get(c);
+
+   getRoots(a, b, c, root1, root2, valid);
+
+   if valid /= false then
+      Put_Line("The roots are:");
+      Put(root1); Put_Line("");
+      Put(root2); Put_Line("");
+   end if;
+
+end quadratic;
+
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ga natmea  ake quadratic.adb
+gnatmake: "quadratic" up to date.
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ./quadratic.adb
+bash: ./quadratic.adb: Permission denied
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ./quadratic.adb    
+To get the roots of a quadratic equation, enter a, b, c of form ax^2 + bx + c:
+Enter a:3
+Enter b:1
+Enter c:8
+***Error getRoots(): b^2 -4ac is negative!
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ./quadratic
+To get the roots of a quadratic equation, enter a, b, c of form ax^2 + bx + c:
+Enter a:0
+Enter b:5
+Enter c:9
+***Error getRoots(): a is zero!
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ./quadratic
+To get the roots of a quadratic equation, enter a, b, c of form ax^2 + bx + c:
+Enter a:1
+Enter b:5
+Enter c:6
+The roots are:
+-2.00000E+00
+-3.00000E+00
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ./quadratic
+To get the roots of a quadratic equation, enter a, b, c of form ax^2 + bx + c:
+Enter a:6
+Enter b:11
+Enter c:-35
+The roots are:
+ 1.66667E+00
+-3.50000E+00
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ exit
+
+Script done on 2021-03-17 17:26:26-0400
+Script started on 2021-03-17 14:14:37-0400
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06/clojure[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06/clojure[00m$ cat / src/quadratic.clj
+;;;; quadratic.clj recieves a quadratic equation and returns its roots.
+;;;;
+;;;; Input: ints: a, b, c (of form ax^2 + bx + c) 
+;;;; Output: the roots when inputed into the above equations
+;;;;
+;;;; Completed by: Josiah Ryan
+;;;; Date: 03/15/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns quadratic)      ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getRoots() gets roots for quadratic equation 
+;;; Receive: ints a, b, c 
+;;; PRE: a > 0, (b^2 - 4ac) is not negative
+;;; Return: a vector with the roots in it
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn getRoots [a b c]
+  (if (not= a 0)
+    (let [arg (- (* b b) (* 4 a c))]
+      (if (>= arg 0)
+        (vector (float (/ (+ (- 0 b) (Math/sqrt arg))(* 2 a))) (float (/ (- (- 0 b) (Math/sqrt arg)) (* 2 a)))) 
+        (do (print "\n*** getRoots(): b^2 - 4ac is negative!\n") (vector 0.0 0.0)) ; if (arg >= 0)  else
+      )
+    )
+      ;else
+    (do  (print "\n*** getRoots(): a is zero!")  (vector 0.0  0.0)) ; else
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; main function
+;;; Input: ints a, b, c from 'ax^2 + bx + c'
+;;; Output: the roots of the quadratic equation
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+  (print "Enter a quadratic equation of form 'ax^2 + bx + c': ") (flush)
+  (print "\nEnter a:") (flush)
+  (let [ a (read) ]                      ; read the string
+    (print "Enter b:") (flush)
+    (let [ b (read) ]
+      (print "Enter c:") (flush)
+      (let [ c (read)
+             result (getRoots a b c)	 ; calculate the roots
+             root1 (get result 0)    	  	 ; store root1
+	           root2 (get result 1)		 ; store root1
+	   ]
+      ; display the parts
+      (printf (str "\nThe roots are: \n %s\n " 
+                    "%s \n")
+                       root1 root2)
+
+      )
+    )
+  )
+)
+
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06/clojure[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06/clojure[00m$ clojure quad    -m quadratic
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+Enter a:3
+Enter b:1
+Enter c:8
+
+*** getRoots(): b^2 - 4ac is negative!
+
+The roots are: 
+ 0.0
+ 0.0 
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06/clojure[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06/clojure[00m$ clojure -m quadratic
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+Enter a:0
+Enter b:5
+Enter c:9
+
+*** getRoots(): a is zero!
+The roots are: 
+ 0.0
+ 0.0 
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06/clojure[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06/clojure[00m$ clojure -m quadratic
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+Enter a:1
+Enter b:5
+Enter c:6
+
+The roots are: 
+ -2.0
+ -3.0 
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06/clojure[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06/clojure[00m$ clojure -m quadratic
+Enter a quadratic equation of form 'ax^2 + bx + c': 
+Enter a:6
+Enter b:11
+Enter c:-35
+
+The roots are: 
+ 1.6666666
+ -3.5 
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06/clojure[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06/clojure[00m$ exit
+
+Script done on 2021-03-17 14:15:58-0400
+Script started on 2021-03-17 17:38:30-0400
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ cat quadratic.rb
+## quadratic.adb recieves a quadratic equation and returns its roots
+##
+## Input: a, b, c (numbers)
+## Precondition:  a, b, c of form ax^2 + bx + c  
+## Output: roots of 'ax^2 + bx + c'
+##
+# Completed by: Josiah Ryan
+# Date: 03/17/21
+##########################################################
+
+# getRoots() returns roots of given inputs          
+# Receive: a, b, c of form ax^2 + bx + c     
+# PRE: a != 0 , and b^2 - 4ac >= 0
+# Passback: roots of the inputs when inputed into the above equation
+######################################################
+
+def getRoots (a, b, c)
+  if a != 0 
+    arg = b*b - 4*a*c
+    if arg >= 0 
+      #returns list with both roots
+      [(-b + Math.sqrt(arg)) / (2*a), (-b - Math.sqrt(arg)) / (2*a), 1 ]
+    else 
+      print "*** getRoots(): b^2 - 4ac is negative!\n";
+      [0, 0, 0]
+    end
+  else 
+    print "*** getRoots(): a is zero!\n";
+    [0, 0, 0]
+  end 
+end 
+
+
+def main
+  print "Enter a quadratic equation, enter a, b, c in of the form 'ax^2 + bx +c':\n";
+  print "a:" ;
+  a = gets.to_i
+  print "b:"; 
+  b = gets.to_i
+  print "c:"; 
+  c = gets.to_i
+  roots = getRoots(a, b, c) # stores results in 'roots'
+  if roots[2] == 1 
+    puts "\nThe roots are" 
+    puts roots[0] 
+    puts roots[1]  
+  end 
+end
+
+main]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ruby quadratic.rb   
+quadratic:1: Invalid char `\x7F' in expression
+quadratic:1: Invalid char `\x02' in expression
+quadratic:1: Invalid char `\x01' in expression
+quadratic:1: Invalid char `\x01' in expression
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ruby quadratic.rb
+Enter a quadratic equation, enter a, b, c in of the form 'ax^2 + bx +c':
+a:3
+b:1
+c:8
+*** getRoots(): b^2 - 4ac is negative!
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ruby quadratic.rb
+Enter a quadratic equation, enter a, b, c in of the form 'ax^2 + bx +c':
+a:0
+b:5
+c:9
+*** getRoots(): a is zero!
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ruby quadratic.rb
+Enter a quadratic equation, enter a, b, c in of the form 'ax^2 + bx +c':
+a:1
+b:5
+c:6
+
+The roots are
+-2.0
+-3.0
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ ruby quadratic.rb
+Enter a quadratic equation, enter a, b, c in of the form 'ax^2 + bx +c':
+a:6
+b:11
+c:-35
+
+The roots are
+1.6666666666666667
+-3.5
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/06[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/06[00m$ exit
+
+Script done on 2021-03-17 17:39:21-0400

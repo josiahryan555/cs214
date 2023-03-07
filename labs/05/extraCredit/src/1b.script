@@ -1,0 +1,13 @@
+Script started on 2021-03-05 13:35:20-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ clojure
+Clojure 1.10.1
+user=> ((fn [x y z] (+ x y z)) 5 10 ((fn [x y z] (+ x y z)) 5 10 15))
+45
+user=> ((fn [x] (nil? x) ) 20)
+false
+user=> ((fn [] 17.2))
+17.2
+user=> 
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ exit
+
+Script done on 2021-03-05 13:37:51-0500

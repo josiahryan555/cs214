@@ -1,0 +1,37 @@
+Ada:
+- circle_area.adb
+- circleArea ( function name ) variables: function(a, b: is double) I think
+- comments --comment       ; must come after every line
+
+--header:
+with Ada.Text_IO, Ada.Float_Text_IO;
+use  Ada.Text_IO, Ada.Float_Text_IO;
+
+procedure file_name is
+  Astring, Part1, Part2 : String  := EMPTY_STRING;  --var declaration
+
+- compiling:  gnatmake circle_area.abd
+- running  :  ./circle_area
+
+Parameter passing:   ***************************************************************
+- in (read in only)   out (write to only)    in out (read from and write to
+
+Procedure **************************************************************************
+procedure Split (Astring : in String, Pos : in Integer, Part1, Part2 : in out string) is 
+      --declarations
+   begin
+        Put_Line("text");
+        Put("textt");
+        Get(variable);
+   end Split
+
+Array (not linked list, but all values are side by side in memory*******************
+  type Vector is array ( Positive range <>) of Float;  --declares a vector type
+  array1 : Vector := (9.0, 8.0, 7.0, 6.0);             --uses that type
+  
+  array1'Length (First, Last, Range, ...)
+for loop****************************************************************************
+    for I in A'First..A'Last     -- traverses array
+      loop 
+         Total := Total + A(I); 
+      end loop; 

@@ -1,0 +1,33 @@
+closjure:			(add 8 9)
+
+*** House Keeping ****************************************************************
+-clj opens in-terminal compiler
+-to make file:
+   -mkdir clojure
+   -mkdir src in clojure
+   -make file there circle_area.clj  
+execute 
+-go to lab/01/clojure/ then 'clojure -m file_name'   to compile the src folder in the clojure folder
+
+*** General Advice **********************************************************
+-assume variables are immutabe
+-functions return the value of the last line executed
+-return and paramater types are determined at runtime
+-funcion circleArea()  variable: itsRadius
+-( ) parantheses around something calls it as a function
+
+*** Syntax *******************************************************************
+-1+2 => (+ 1 2)
+if stmt (if ( <expr> )  <stmt>   <stmt>  )
+			if stmts     else stmts
+Anonymous / lambda functions:
+  (fn [ParameterList] FunctionBody )   ; runction not remembered
+  (fn [x]  	    (+ x x) )
+
+records
+(:fieldName objectName) accesses the field of the object specified
+
+modules
+  (defrecord Name [firstName middleName lastName])s
+- (load "Name") 
+- (load-file "src/Name.clj")

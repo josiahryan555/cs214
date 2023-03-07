@@ -1,0 +1,24 @@
+Script started on 2021-03-05 13:40:41-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ clojure
+Clojure 1.10.1
+user=> (def triple (fn [x] (* x 3)))
+#'user/triple
+user=> (triple 4)
+12
+user=> 
+user=> (defn triple [x] (* x 3))
+#'user/triple
+user=> (triple 3)
+9
+user=> (#(* % 3) 4)
+12
+user=> #(+ (* %1 %2 1) (* %2 %2))^[[D^[[D                                (# #(+ (* %1 %1) (* %2 %2)) 3 4)
+25
+user=> (def sum2Squares #(+ (* %1 %1) (* %2 %2)))
+#'user/sum2Squares
+user=> (sum2Squares 3 4)
+25
+user=> 
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ exit
+
+Script done on 2021-03-05 13:47:20-0500

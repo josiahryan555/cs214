@@ -1,0 +1,212 @@
+Script started on 2021-02-18 13:04:46-0500
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ cat Ya earCodes.java
+/* YearCodes.java is a driver for function yearCode().
+ *
+ * Begun by: Prof. Adams, for CS 214 at Calvin College.
+ ****************************************************************/
+
+import java.util.Scanner;
+
+public class YearCodes {
+
+   public static void main(String[] args) {
+      Scanner keyboard = new Scanner(System.in);
+      System.out.println("\nEnter your academic year: "); // prompt
+
+      String year = keyboard.next();      // read year
+      System.out.println(yearCode(year)); // display its code
+   }
+
+   /***************************************************************
+    * yearCode() converts an academic year into its integer code.
+    *
+    * Receive: year, a string.
+    * PRE: year is one of {freshman, sophomore, junior, or senior}.
+    * Return: the integer code corresponding to year.
+    */
+    public static int yearCode(String year) {
+	if (year.equals("freshman"))
+	    return 1;
+	else if (year.equals("sophomore"))
+	    return 2;
+	else if (year.equals("junior"))
+	    return 3;
+	else if (year.equals("senior"))
+	    return 4;
+	else
+	    return 0;
+    }
+}
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ cat YearCodes.javals[K[7@cd Gradesls[Kcd /home/cs/214/current/jr232p cs214project02 /home/cs/214/current/jrr232[A]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ c[11Pd /home/cs/214/current/jr232
+[K[A]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ cd /home/cs/214/current/jr232ls[K[7@cd Gradesls[Kcat YearCodes.java[Kcat YearCodes.javals[K[7@cd Gradesls[Kcd /home/cs/214/current/jr232ls[K[7@cd Gradesls[Kcat YearCodes.java[Kjava YearCode
+Error: Could not find or load main class YearCode
+Caused by: java.lang.ClassNotFoundException: YearCode
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ java YearCodes
+
+Enter your academic year: 
+freshman
+1
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ java YearCodes
+
+Enter your academic year: 
+sophomre  ore
+2
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ java YearCodes
+
+Enter your academic year: 
+junior
+3
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ java YearCodes
+
+Enter your academic year: 
+senior
+4
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ java YearCodes
+
+Enter your academic year: 
+time    the bean
+0
+]0;jr232@maroon13: ~/Desktop/cs214/labs/03[01;32mjr232@maroon13[00m:[01;34m~/Desktop/cs214/labs/03[00m$ exit
+
+Script done on 2021-02-18 13:06:05-0500
+Script started on 2021-02-19 12:44:10-0500
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ cat year_codes.adb
+-- year_codes.adb converts academic year codes to corresponding years.
+--
+-- Begun by: Dr. Adams, for CS 214 at Calvin College.
+--
+-- Input: year, a string
+-- Precondition: year is one of "freshman", "sophomore", "junior", "senior"
+-- Output: The year code (1, 2, 3 or 4) corresponding to year.
+----------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure year_codes is
+
+   year : String(1..9) := "         ";
+   charsRead : Natural;
+   
+   
+   --Receive: year, a string.
+   --Precondition: year is one of {freshman, sophomore, junior, senior}.
+   --Return: The integer code corresponding to year (1, 2, 3 or 4).
+   function yearCode(Year : string) return Integer is 
+      begin 
+	 if Year = "freshman " then 
+	    return 1;
+	 elsif Year = "sophomore" then
+	    return 2;
+	 elsif Year = "junior   " then
+	    return 3;
+	 elsif Year = "senior   " then
+	    return 4;
+	 end if;
+	   return 0;
+      end YearCode;
+begin                                          
+   Put("Enter your academic year: ");           -- Prompt for input
+   Get_Line(year, charsRead);                   -- Input
+   Put( yearCode(year) );                       -- Convert and output
+   New_Line;
+end year_codes;
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ cat year_codes.adbemacs year_does.adb~ &[1P &[Kls[Kcd /home/jr232/Desktop/cs214/labs/03ls[Kcd 03[3Pls[31@cd /home/jr232/Desktop/cs214/labsls[Kcd 03[3Plscd /home/jr232/Desktop/cs214/labs/03ls[Kemacs year_does.adb &[1@~ &[4Pcat year_codes.adb[Kcat year_codes.adbemacs year_does.adb~ &[4Pcat year_codes.adb[K./year_codes
+Enter your academic year: j fresn hman
+          1
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ./year_codes
+Enter your academic year: soh phomore
+          2
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ./year_codes
+Enter your academic year: junior
+          3
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ./year_codes
+Enter your academic year: senior
+          4
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ./year_codes
+Enter your academic year: tim the mighty bean
+          0
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ exit
+
+Script done on 2021-02-19 12:45:08-0500
+Script started on 2021-02-19 13:09:45-0500
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03/clojure[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03/clojure[00m$ ./year_codescat year_codes.adbemacs year_does.adb~ &[4Pcat year_codes.adb[6P./year_codes[Kclor jure -m year_codes
+
+Enter your academic year: freshman
+1 
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03/clojure[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03/clojure[00m$ clojure -m year_codes
+
+Enter your academic year: sophomre  ore
+2 
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03/clojure[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03/clojure[00m$ clojure -m year_codes
+j
+Enter your academic year: unior      junior
+3 
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03/clojure[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03/clojure[00m$ clojure -m year_codes
+
+Enter your academic year: sn enior
+4 
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03/clojure[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03/clojure[00m$ clojure -m year_codes
+
+Enter your academic year: tim the mighty bean
+nil 
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03/clojure[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03/clojure[00m$ exit
+
+Script done on 2021-02-19 13:11:00-0500
+Script started on 2021-02-19 13:50:39-0500
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ cat year_codes.rb
+#! /usr/bin/ruby
+# year_codes.rb translates an academic year into a numeric code
+# Begun by: Dr. Nelesen, for CS 214 at Calvin College 
+################################################################
+
+# Input:  The name of an academic year
+# Precondition: The academic year is a string with a value of freshman, 
+#   sophomore, junior or senior
+# Output: The corresponding integer code for the given academic year
+
+def yearCode(year)
+  if year =~ /freshman/
+    1
+  elsif year =~ /sophomore/
+    2
+  elsif year =~ /junior/
+    3
+  elsif year =~ /senior/
+    4
+  else
+    0
+  end
+end
+
+if __FILE__ == $0
+   print "Enter the year: "
+   year = gets
+   print "Numeric code is: "
+   puts yearCode(year)
+end
+
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ruby year_codes.rb
+Enter the year: freshman
+Numeric code is: 1
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ruby year_codes.rb
+Enter the year: soh phomre  ore
+Numeric code is: 2
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ruby year_codes.rb
+Enter the year: junior
+Numeric code is: 3
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ruby year_codes.rb
+Enter the year: senior
+Numeric code is: 4
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ ruby year_codes.rb
+Enter the year: tim the mighty bean
+Numeric code is: 0
+]0;jr232@maroon28: ~/Desktop/cs214/labs/03[01;32mjr232@maroon28[00m:[01;34m~/Desktop/cs214/labs/03[00m$ exit
+
+Script done on 2021-02-19 13:51:25-0500

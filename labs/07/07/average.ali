@@ -1,0 +1,62 @@
+V "GNAT Lib v7"
+M P W=b
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV SPARK_05
+
+U average%b		average.adb		7ce99fe6 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+D ada.ads		20170106103348 76789da1 ada%s
+D a-except.ads		20151016123252 291912d5 ada.exceptions%s
+D a-flteio.ads		20070406091342 e18a47a0 ada.float_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20151016130316 01f5e3ef ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiflio.ads		20140717063513 56fbda09 ada.text_io.float_io%s
+D a-unccon.ads		20170106103348 31484697 ada.unchecked_conversion%s
+D average.adb		20210318171528 a50e2d92 average%b
+D interfac.ads		20160502101001 5ab55268 interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D system.ads		20170510173650 4635ec04 system%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-soflin.ads		20151020124036 14e1eb6c system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20151112104907 09bd3940 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20160502101423 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 20e8 10|10r6 10r23 11r6 11r29
+X 3 a-flteio.ads
+20K13*Float_Text_IO[8|46] 10|11w10 11r33
+X 7 a-textio.ads
+49K13*Text_IO 471e16 10|10w10 10r27
+166U14*New_Line 10|57s4 60s4
+242U14*Put 10|55s4 58s4
+X 8 a-tiflio.ads
+68U14*Put 10|56s4[3|20] 59s4[3|20]
+X 10 average.adb
+13U11*average 13b11 61l5 61t12
+15A6 Vector(float)<integer> 17r10 19r10 27r17 44r28
+17a1 array0{15A6} 56r17
+19a1 array1{15A6} 59r17
+27V10 sum{float} 27b10 27>14 36l8 36t11 49s17
+27a14 A{15A6} 31r16 31r25 33r27
+28f4 Total{float} 33m10 33r19 35r14
+31i11 I{integer} 33r29
+44V10 average{float} 44b10 44>18 51l8 51t15 56s9 59s9
+44a18 anArray{15A6} 46r10 49r21 49r36
+

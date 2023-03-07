@@ -1,0 +1,81 @@
+V "GNAT Lib v7"
+M P W=b
+A -gnata
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_FLOATING_POINT
+RV NO_IO
+RV SPARK_05
+
+U temp_tester%b		temp_tester.adb		092b9cc5 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.assertions%s	s-assert.adb		s-assert.ali
+W temp_package%s	temp_package.adb	temp_package.ali
+
+D ada.ads		20170106103348 76789da1 ada%s
+D a-except.ads		20151016123252 291912d5 ada.exceptions%s
+D a-flteio.ads		20070406091342 e18a47a0 ada.float_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20151016130316 01f5e3ef ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiflio.ads		20140717063513 56fbda09 ada.text_io.float_io%s
+D a-unccon.ads		20170106103348 31484697 ada.unchecked_conversion%s
+D interfac.ads		20160502101001 5ab55268 interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D system.ads		20170510173650 4635ec04 system%s
+D s-assert.ads		20140225151544 cd8d2c94 system.assertions%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-soflin.ads		20151020124036 14e1eb6c system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20151112104907 09bd3940 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20160502101423 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+D temp_package.ads	20210407194613 8797de96 temp_package%s
+D temp_tester.adb	20210407201151 575bf027 temp_tester%b
+X 1 ada.ads
+16K9*Ada 20e8 26|8r6 8r23 10r6 10r29
+X 3 a-flteio.ads
+20K13*Float_Text_IO[8|46] 26|10w10 10r33
+X 7 a-textio.ads
+49K13*Text_IO 471e16 26|8w10 8r27
+166U14*New_Line 26|61s30
+242U14*Put 26|35s4 61s4
+263U14*Put_Line 26|28s4 31s4 33s4 43s10 53s10
+X 8 a-tiflio.ads
+57U14*Get 26|36s4[3|20]
+X 25 temp_package.ads
+8K9*temp_package 33e17 26|9w6 9r24 13r9 14r10 15r10
+10R6*Temp 31e17 26|13r22 14r23 15r23
+11U11*Init 26|18s4 19s4 20s4
+12V10*getTemp{float} 26|22s19
+13V10*getStep{float} 26|23s19
+14V10*getType{character} 26|24s19
+16U11*inputTemp 26|30s4 34s4
+17V10*getFahrenheit{10R6} 26|40s21 50s21
+18V10*getCelsius{10R6} 26|41s21 51s21
+19V10*getKelvin{10R6} 26|42s21 52s21
+20U11*outputTemp 26|40s10 41s10 42s10 50s10 51s10 52s10
+22V10*lowerTemp{10R6} 26|46s19 56s18
+23V10*equals{boolean} 26|26s19 39s45 45s20 49s45 55s20
+24V10*lessThan{boolean} 26|38s7 39s13 49s13
+X 26 temp_tester.adb
+12U11*temp_tester 12b11 62l5 62t16
+13r1 aTemp{25|10R6} 18m9 22r27 23r27 24r27 26r26 30m14 30r14 38m16 38r16
+. 39m22 39r22 39r60 40r35 41r32 42r31 45r35 46m10 46r29 49m30 49r30 49r60
+. 50r35 51r32 52r31 55r35 56m10 56r28
+14r1 aTemp2{25|10R6} 19m9 26r33 34m14 34r14 38m23 38r23 39m29 39r29 39r52
+. 45r27 49m22 49r22 49r52 55r27
+15r1 aTemp3{25|10R6} 20m9
+16f1 increment{float} 36m8 46r36 56r35
+

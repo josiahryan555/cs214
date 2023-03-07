@@ -1,0 +1,13 @@
+Script started on 2021-03-05 13:08:46-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ clojure
+Clojure 1.10.1
+user=> (fn [x] (+ x x))^[[D        )
+#object[user$eval136$fn__137 0x6d467c87 "user$eval136$fn__137@6d467c87"]
+user=> ((fn [x] (+ xx  d x) ) 21)
+42
+user=> ((fn [x y] (+ x x   (* x x) (* y y))) 3 4)
+25
+user=> 
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ exit
+
+Script done on 2021-03-05 13:14:14-0500

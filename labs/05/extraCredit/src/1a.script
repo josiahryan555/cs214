@@ -1,0 +1,9 @@
+Script started on 2021-03-05 13:26:15-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ clojure
+Clojure 1.10.1
+user=> ((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) 1 4 -7)
+7
+user=> 
+]0;jr232@gold14: ~/Desktop/cs214/labs/05/extraCredit/src[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit/src[00m$ exit
+
+Script done on 2021-03-05 13:26:38-0500

@@ -1,0 +1,9 @@
+Script started on 2021-03-05 17:58:48-0500
+]0;jr232@goldvm05: ~/Desktop/cs214/labs/05/extraCredit[01;32mjr232@goldvm05[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit[00m$ clojure
+Clojure 1.10.1
+user=> (map (fn [x] (* x -1)) [1 -2 3 -4 5 -6 7 -8 9])
+(-1 2 -3 4 -5 6 -7 8 -9)
+user=> 
+]0;jr232@goldvm05: ~/Desktop/cs214/labs/05/extraCredit[01;32mjr232@goldvm05[00m:[01;34m~/Desktop/cs214/labs/05/extraCredit[00m$ exit
+
+Script done on 2021-03-05 17:58:58-0500

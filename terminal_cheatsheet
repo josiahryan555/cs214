@@ -1,0 +1,62 @@
+General:
+- pwd (pathway-to-working-directory
+- mkdir (make folder/directory)
+- cd .. (go-to, upper dir)  (. = current dir, .. = parent dir)
+- mv file_name .. (move file up a directory
+- cp (copy) mv (move)
+-in vim: :set to paste
+   -d100 (delete 100 lines)
+   -o to go to new line
+
+
+******* scripting ****************
+script script.java
+cat CircleArea.java 
+
+control-d
+
+closjure:
+-clj opens in-terminal compiler
+-to make file:
+   -mkdir clojure
+   -mkdir src in clojure
+   -make file there circle_area.clj   funcion circleArea()  variable: itsRadius
+-go to lab/01/clojure/ then 'clojure -m file_name'   to compile the src folder in the clojure folder
+-1+2 => (+ 1 2)
+-return and paramater types are determined at runtime
+-a function returns the last returned value in the function
+
+Java:
+-CircleArea.java ( filename / class name )  -circleArea ( function name )
+- comments  //blah   or /* blah blah blah  */
+- string formating similar to C++   ( \n, "text" + "text" + function() )
+  -no formating needed for printing numbers 
+- lines end with;
+- print = System.out.print[ln, f[ormat]]( text );
+- get input 
+  -open keyboard = Scanner keyboard = new Scanner(System.in);
+  -get input = double radius = keyboard.nextDouble();
+-aString.equals(stringToCompareItWith)   //compares 2 strings
+
+*** file operations ***
+-javac -deprecation CircleArea.java   //to compile
+-java CircleArea                      // to run 
+
+
+Ada:
+- circle_area.abd     circleArea ( function name ) variables: function(a, b: is double) I think
+- comments --comment       ; must come after every line
+
+
+- compiling:  gnatmake circle_area.abd
+- running  :  ./circle_area
+
+Ruby:
+-circle_area.rb function: circleArea()
+-# comment
+def circleArea(radius)  #(same for if, and probably lots more) 
+  code
+end
+- to get user input: length = gets.chomp.to_f #sets radius to user input
+- to compile:  ruby circle_area.rb
+

@@ -1,0 +1,454 @@
+Script started on 2021-04-09 14:00:35-0400
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ cat src/Temp.clj
+;; Temp.clj is a module for our 'Temp' type-abstraction.
+;;
+;; Begun by: Prof. Adams, for CS 214 at Calvin College.
+;; Completed by: Josiah Ryan
+;; Date:         04/07/2021
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Create a record/struct type named Temp
+(defrecord Temp [myTemp myStep myType])
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; isValid determines if a passed temp and type is valid (above absolute 0)
+;;; Receive: aTemp, a Temp.
+;;; Return: true if the passed temp and type is valid (above absolute 0) or false not valid
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn isValid [temp type]
+  (if (or (= type 'k) (= type 'K))
+    (if (< temp 0.0) false true)
+    (if (or (= type 'c) (= type 'C))
+      (if (< temp -273.15) false true)
+      (if (or (= type 'f) (= type 'F))
+        (if (< temp -459.67) false true) 
+        false
+      )
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; make-Temp constructs a Temp object from 2 Floats and a Char. 
+;; Receive: myTemp, myStep (Float) and myType (Char).
+;; Return: the Temp (myType myStep myType). 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn make-Temp [myTemp myStep myType]
+  (if (isValid myTemp myType)
+    (->Temp myTemp myStep myType)
+    (do 
+      (println "invalid temp and type, object initialized to 0 k")
+      (->Temp 0.0 myStep 'k)
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getTemp extracts myTemp and returns it.
+;;; Receive: aTemp, a Temp.
+;;; Return: myTemp Float in aTemp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn getTemp [aTemp]
+  (:myTemp aTemp)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getStep extracts myStep and returns it.
+;;; Receive: aTemp, a Temp.
+;;; Return: myStep Float in aTemp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn getStep [aTemp]
+  (:myStep aTemp)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getType extracts myType and returns it.
+;;; Receive: aTemp, a Temp.
+;;; Return: myType Char in aTemp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn getType [aTemp]
+  (:myType aTemp)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; setTemp recieves aTemp object, copies it, changes the myTemp field to the passed value and returns it.
+;;; Receive: aTemp, a Temp.
+;;; Return: a new temp object with the modfied temp
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn setTemp [aTemp temp]
+  (make-Temp temp (getStep aTemp) (getTemp aTemp))
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; setType recieves aTemp object, copies it, changes the myType field to the passed value and returns it.
+;;; Receive: aTemp, a Temp.
+;;; Return: a new temp object with the modfied type
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn setType [aTemp type]
+  (make-Temp (getTemp aTemp) (getStep aTemp) type)
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getFahrenheit returns a copy of the passed temperature object converted to Fahrenheit
+;;; Receive: aTemp, a Temp.
+;;; Return: a copy of the Temp object passed converted to Fahrenheit
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn getFahrenheit [aTemp]
+  (if (or (= (getType aTemp) 'f) (= (getType aTemp) 'F))
+    (make-Temp (getTemp aTemp) (getStep aTemp) 'f)
+    (if (or (= (getType aTemp) 'c) (= (getType aTemp) 'C))
+      (make-Temp (+ (* (getTemp aTemp) (/ 9.0 5.0)) 32.0) (getStep aTemp) 'f) 
+      (make-Temp (+ (* (- (getTemp aTemp) 273.15) (/ 9.0 5.0)) 32.0) (getStep aTemp) 'f) ; aTemp.myType = kelvin
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getCelsius returns a copy of the passed temperature object converted to Celsius
+;;; Receive: aTemp, a Temp.
+;;; Return: a copy of the Temp object passed converted to Celsius
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn getCelsius  [aTemp] 
+   (if (or (= (getType aTemp) 'f) (= (getType aTemp) 'F))
+    (make-Temp (* (- (getTemp aTemp) 32.0) (/ 5.0 9.0)) (getStep aTemp) 'c) 
+    (if (or (= (getType aTemp) 'c) (= (getType aTemp) 'C))
+      (make-Temp (getTemp aTemp) (getStep aTemp) 'c) 
+      (make-Temp (- (getTemp aTemp) 273.15) (getStep aTemp) 'c) ; aTemp.myType = kelvin
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; getKelvin returns a copy of the passed temperature object converted to Kelvin
+;;; Receive: aTemp, a Temp.
+;;; Return: a copy of the Temp object passed converted to Kelvin
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn getKelvin  [aTemp] 
+   (if (or (= (getType aTemp) 'f) (= (getType aTemp) 'F))
+    (make-Temp (+ (* (- (getTemp aTemp) 32.0) (/ 5.0 9.0)) 273.15) (getStep aTemp) 'k) 
+    (if (or (= (getType aTemp) 'c) (= (getType aTemp) 'C))
+      (make-Temp (+ (getTemp aTemp) 273.15) (getStep aTemp) 'k) 
+      (make-Temp (getTemp aTemp) (getStep aTemp) 'k) ; aTemp.myType = kelvin
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; inputTemp gets a user inputed temp and type and returns a modified version of the passed temp with the new temp and type
+;;; Receive: aTemp, a Temp.
+;;; Return: a copy of the passed temp object with the user inputed temp and type 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn inputTemp [aTemp]
+  (let [ temp (float (read))
+         type (read)]
+    (if (isValid temp type) 
+      (make-Temp temp (getStep aTemp) type)
+      (do (println "Invalid temp and type passed to inputTemp(), Temp object not changed") aTemp)
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; outputTemp ouputs the passed Temp's myTemp and myType in form ('-90.3 f')
+;;; Receive: aTemp, a Temp.
+;;; Return: None
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn outputTemp [aTemp]
+  (print (format "%.3f" (getTemp aTemp)))
+  (print " ")
+  (print (getType aTemp))
+  (print "   ")
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; raise returns a copy of the passed Temp object raised by increment degrees (as long as the new Temperature is valid)
+;;; Receive: aTemp, a Temp.
+;;; Return: a copy of the passed Temp object raised by increment degrees (as long as the new Temperature is valid)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn raise [aTemp increment]
+  (if (isValid (+ (getTemp aTemp) increment) (getType aTemp))
+    (make-Temp (+ (getTemp aTemp) increment) (getStep aTemp) (getType aTemp) )
+    (do (println "Raised temp was below absolute zero, temp not changed") aTemp)
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; lower returns a copy of the passed Temp object lowered by increment degrees (as long as the new Temperature is valid)
+;;; Receive: aTemp, a Temp.
+;;; Return: a copy of the passed Temp object lowered by increment degrees (as long as the new Temperature is valid)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn lower [aTemp increment]
+  (if (isValid (- (getTemp aTemp) increment) (getType aTemp))
+    (make-Temp (- (getTemp aTemp) increment) (getStep aTemp) (getType aTemp) )
+    (do (println "Raised temp was below absolute zero, temp not changed") aTemp)
+  )
+)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; equals returns true if temp1.myType = temp2.myType  and  temp1.myTemp = temp2.myTemp 
+;;; Receive: temp1, temp2, Temp(s).
+;;; Return: true if temp1.myType = temp2.myType  and  temp1.myTemp = temp2.myTemp   false otherwise
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn equals [temp1 temp2]
+  (if (= (getType temp1) (getType temp2))
+    (if (= (getTemp temp1) (getTemp temp2))
+      true
+      false
+    )
+    false
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; lessThan returns true if temp1 < temp2 
+;;; Receive: aTemp, a Temp.
+;;; Return: true if temp1 < temp2, false otherwise
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn lessThan [temp1 temp2]
+  (< (getTemp (getCelsius temp1)) (getTemp (getCelsius temp2)))
+)
+
+
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ cat src/tempTester.clj
+;; tempTester.clj tests a Clojure Temp type,
+;;  stored in Temp.clj (in the src directory).
+;;
+;; Output: the results of testing the Temp functions.
+;;
+;; Usage: clojure -m tempTester
+;;
+;; Begun by: Prof. Adams, CS 214 at Calvin College.
+;; Completed by: Josiah Ryan  
+;; Date:         04/07/2021
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns tempTester)
+
+(load "Temp")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; A simple driver to test our Temp functions. 
+;; Output: the results of testing our Temp functions.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn -main []
+  (let
+    [      
+      temp1 (make-Temp 101.0 10.0 'f)    ; -using our "make-" constructor
+      temp2 (make-Temp 100.0 10.0 'c)    ; -using our "make-" constructor
+      temp3 (make-Temp -1.0 10.0 'f)    ; -using our "make-" constructor
+      temp4 (make-Temp -1.0 10.0 'f)    ; -using our "make-" constructor
+    ]
+
+  (println (getTemp temp1) (getType temp1) (getStep temp1))
+  (println (getCelsius temp2))
+  (println (getFahrenheit temp2))
+  (println (getKelvin temp2))
+  (assert (= (getTemp temp3) -1.0) "getTemp(temp3) failed")
+  (assert (= (getType temp3) 'f) "getType(temp3) failed")
+
+ 
+  ;output table
+    (println)
+    (println "Enter the base temperature first, the destination temperature second, and the increment value last")
+    (let [temp1 (inputTemp temp1)
+          temp2 (inputTemp temp2)
+          increment (read)]
+
+      (if (lessThan temp1 temp2)
+        (loop [temperature temp1]
+          (when ( or (lessThan temperature temp2) (equals temperature temp2))
+
+            (outputTemp (getFahrenheit temperature))
+            (outputTemp (getCelsius temperature))
+            (outputTemp (getKelvin temperature))
+            (println)
+
+            (if (isValid (+ (getTemp temperature ) increment) (getType temperature))  ; only recurs if the decremented value is not below absolute zero
+              (recur (raise temperature increment)) 
+            )
+          )
+        )
+
+        ; temp1 > temp2  so temp1 will be lowered instead of raised
+        (loop [temperature temp1]  
+          (when ( or (lessThan temp2 temperature) (equals temperature temp2))
+            (outputTemp (getFahrenheit temperature))
+            (outputTemp (getCelsius temperature))
+            (outputTemp (getKelvin temperature))
+            (println)
+            (if (isValid (- (getTemp temperature ) increment) (getType temperature))  ; only recurs if the decremented value is not below absolute zero
+              (recur (lower temperature increment)) 
+            )
+          )
+        )
+      )
+
+      (println "\nAll tests passed!\n")
+    )
+  )
+)
+
+
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ make
+clojure -m tempTester
+101.0 f 10.0
+#tempTester.Temp{:myTemp 100.0, :myStep 10.0, :myType c}
+#tempTester.Temp{:myTemp 212.0, :myStep 10.0, :myType f}
+#tempTester.Temp{:myTemp 373.15, :myStep 10.0, :myType k}
+
+Enter the base temperature first, the destination temperature second, and the increment value last
+0.0 k
+100 c
+5.52
+-459.670 f   -273.150 c   0.000 k   
+-449.734 f   -267.630 c   5.520 k   
+-439.798 f   -262.110 c   11.040 k   
+-429.862 f   -256.590 c   16.560 k   
+-419.926 f   -251.070 c   22.080 k   
+-409.990 f   -245.550 c   27.600 k   
+-400.054 f   -240.030 c   33.120 k   
+-390.118 f   -234.510 c   38.640 k   
+-380.182 f   -228.990 c   44.160 k   
+-370.246 f   -223.470 c   49.680 k   
+-360.310 f   -217.950 c   55.200 k   
+-350.374 f   -212.430 c   60.720 k   
+-340.438 f   -206.910 c   66.240 k   
+-330.502 f   -201.390 c   71.760 k   
+-320.566 f   -195.870 c   77.280 k   
+-310.630 f   -190.350 c   82.800 k   
+-300.694 f   -184.830 c   88.320 k   
+-290.758 f   -179.310 c   93.840 k   
+-280.822 f   -173.790 c   99.360 k   
+-270.886 f   -168.270 c   104.880 k   
+-260.950 f   -162.750 c   110.400 k   
+-251.014 f   -157.230 c   115.920 k   
+-241.078 f   -151.710 c   121.440 k   
+-231.142 f   -146.190 c   126.960 k   
+-221.206 f   -140.670 c   132.480 k   
+-211.270 f   -135.150 c   138.000 k   
+-201.334 f   -129.630 c   143.520 k   
+-191.398 f   -124.110 c   149.040 k   
+-181.462 f   -118.590 c   154.560 k   
+-171.526 f   -113.070 c   160.080 k   
+-161.590 f   -107.550 c   165.600 k   
+-151.654 f   -102.030 c   171.120 k   
+-141.718 f   -96.510 c   176.640 k   
+-131.782 f   -90.990 c   182.160 k   
+-121.846 f   -85.470 c   187.680 k   
+-111.910 f   -79.950 c   193.200 k   
+-101.974 f   -74.430 c   198.720 k   
+-92.038 f   -68.910 c   204.240 k   
+-82.102 f   -63.390 c   209.760 k   
+-72.166 f   -57.870 c   215.280 k   
+-62.230 f   -52.350 c   220.800 k   
+-52.294 f   -46.830 c   226.320 k   
+-42.358 f   -41.310 c   231.840 k   
+-32.422 f   -35.790 c   237.360 k   
+-22.486 f   -30.270 c   242.880 k   
+-12.550 f   -24.750 c   248.400 k   
+-2.614 f   -19.230 c   253.920 k   
+7.322 f   -13.710 c   259.440 k   
+17.258 f   -8.190 c   264.960 k   
+27.194 f   -2.670 c   270.480 k   
+37.130 f   2.850 c   276.000 k   
+47.066 f   8.370 c   281.520 k   
+57.002 f   13.890 c   287.040 k   
+66.938 f   19.410 c   292.560 k   
+76.874 f   24.930 c   298.080 k   
+86.810 f   30.450 c   303.600 k   
+96.746 f   35.970 c   309.120 k   
+106.682 f   41.490 c   314.640 k   
+116.618 f   47.010 c   320.160 k   
+126.554 f   52.530 c   325.680 k   
+136.490 f   58.050 c   331.200 k   
+146.426 f   63.570 c   336.720 k   
+156.362 f   69.090 c   342.240 k   
+166.298 f   74.610 c   347.760 k   
+176.234 f   80.130 c   353.280 k   
+186.170 f   85.650 c   358.800 k   
+196.106 f   91.170 c   364.320 k   
+206.042 f   96.690 c   369.840 k   
+
+All tests passed!
+
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ make
+clojure -m tempTester
+101.0 f 10.0
+#tempTester.Temp{:myTemp 100.0, :myStep 10.0, :myType c}
+#tempTester.Temp{:myTemp 212.0, :myStep 10.0, :myType f}
+#tempTester.Temp{:myTemp 373.15, :myStep 10.0, :myType k}
+
+Enter the base temperature first, the destination temperature second, and the increment value last
+109.9 K
+0.0 K
+23.4
+-261.850 f   -163.250 c   109.900 k   
+-303.970 f   -186.650 c   86.500 k   
+-346.090 f   -210.050 c   63.100 k   
+-388.210 f   -233.450 c   39.700 k   
+-430.330 f   -256.850 c   16.300 k   
+
+All tests passed!
+
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ make
+clojure -m tempTester
+101.0 f 10.0
+#tempTester.Temp{:myTemp 100.0, :myStep 10.0, :myType c}
+#tempTester.Temp{:myTemp 212.0, :myStep 10.0, :myType f}
+#tempTester.Temp{:myTemp 373.15, :myStep 10.0, :myType k}
+
+Enter the base temperature first, the destination temperature second, and the increment value last
+200.0 k
+0.0 k
+20  
+-99.670 f   -73.150 c   200.000 k   
+-135.670 f   -93.150 c   180.000 k   
+-171.670 f   -113.150 c   160.000 k   
+-207.670 f   -133.150 c   140.000 k   
+-243.670 f   -153.150 c   120.000 k   
+-279.670 f   -173.150 c   100.000 k   
+-315.670 f   -193.150 c   80.000 k   
+-351.670 f   -213.150 c   60.000 k   
+-387.670 f   -233.150 c   40.000 k   
+-423.670 f   -253.150 c   20.000 k   
+-459.670 f   -273.150 c   0.000 k   
+
+All tests passed!
+
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ make
+clojure -m tempTester
+101.0 f 10.0
+#tempTester.Temp{:myTemp 100.0, :myStep 10.0, :myType c}
+#tempTester.Temp{:myTemp 212.0, :myStep 10.0, :myType f}
+#tempTester.Temp{:myTemp 373.15, :myStep 10.0, :myType k}
+
+Enter the base temperature first, the destination temperature second, and the increment value last
+10.8 f
+200 C
+23.4
+10.800 f   -11.778 c   261.372 k   
+34.200 f   1.222 c   274.372 k   
+57.600 f   14.222 c   287.372 k   
+81.000 f   27.222 c   300.372 k   
+104.400 f   40.222 c   313.372 k   
+127.800 f   53.222 c   326.372 k   
+151.200 f   66.222 c   339.372 k   
+174.600 f   79.222 c   352.372 k   
+198.000 f   92.222 c   365.372 k   
+221.400 f   105.222 c   378.372 k   
+244.800 f   118.222 c   391.372 k   
+268.200 f   131.222 c   404.372 k   
+291.600 f   144.222 c   417.372 k   
+315.000 f   157.222 c   430.372 k   
+338.400 f   170.222 c   443.372 k   
+361.800 f   183.222 c   456.372 k   
+385.200 f   196.222 c   469.372 k   
+
+All tests passed!
+
+]0;jr232@gold12: ~/Desktop/cs214/projects/09/clojure[01;32mjr232@gold12[00m:[01;34m~/Desktop/cs214/projects/09/clojure[00m$ exit
+
+Script done on 2021-04-09 14:02:34-0400

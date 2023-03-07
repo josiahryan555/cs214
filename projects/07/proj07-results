@@ -1,0 +1,425 @@
+Script started on 2021-03-22 14:42:13-0400
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ cat array  Processing.java
+/* arrayProcessing.java is a class that provides two methods: printArray and readArray
+ * 
+ * Completed by: Josiah Ryan
+ * Date        : 03/22/21
+ ***************************************************************/
+
+import java.util.Scanner;
+import java.lang.Math;
+
+public class arrayProcessing
+{
+  // main program
+  public static void main(String[] args)
+    {
+      Scanner keyboard = new Scanner(System.in);
+      // prompt for the string
+      System.out.println("\nEnter array size:");
+      String str = keyboard.nextLine();
+      int size = Integer.parseInt(str);
+      double[] array = new double[size];     //creates an array of user specified size
+      readArray(array);
+      printArray(array);
+      }
+  
+  /* readArray prompts user for the values to store into the array
+   * Receive: 	an array 
+   * Does   :  Stores user inputed values into the array
+   *****************************************************/
+
+  public static void readArray(double[] array) {	
+    String moveStr;
+    Scanner keyboard = new Scanner(System.in);
+    System.out.println("Enter values into the array:");
+      for (int i = 0; i<array.length; i++) {            //loops through the array reading in values from the user
+       System.out.print("  >");
+       moveStr = keyboard.nextLine();
+       array[i] = Integer.parseInt(moveStr);
+      }
+  }
+  
+   /* printArray prints the array passed to it
+   * Receive:  an array 
+   * Does   :  prints the array
+   *****************************************************/
+
+  public static void printArray(double[] array) {	
+    System.out.println("\nYour Array is:");
+
+    for (int i = 0; i<array.length; i++) {
+        System.out.println(array[i]);
+       }
+  }
+
+}
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ javac -deprecation arrap yProcessing.j ava
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ [Kjava arrayProcessing
+
+Enter array size:
+5
+Enter values into the array:
+  >1
+  >2
+  >3
+  >4
+  >5
+
+Your Array is:
+1.0
+2.0
+3.0
+4.0
+5.0
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ exit
+
+Script done on 2021-03-22 14:42:50-0400
+Script started on 2021-03-22 15:54:47-0400
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ cat array_processing.adb
+-- array_processing.adb is a class that provides two methods: printArray and readArray
+--
+-- Completed by: Josiah Ryan
+-- Date: 03/22/21
+--------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Fixed, Ada.Numerics.Elementary_Functions;
+use  Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Fixed, Ada.Numerics.Elementary_Functions;
+
+procedure array_processing is
+
+   size      : Natural;
+
+   --------------------------------------------------------------------
+   -- readArray prompts user for the values to store into the array
+   -- Receive: 	an array 
+   -- Does   :  Stores user inputed values into the array
+      -----------------------------------------------------------------
+   procedure readArray (size : in Integer)is 
+
+   type Vector is array (1..size) of Float;    --declares type Vector that is of user inputed size
+   anArray : Vector;
+   item : float;
+
+
+      --------------------------------------------------------------------
+      -- printArray prints the array passed to it
+      -- Receive: 	an array 
+      -- Does   :  prints the array passed to it
+      -----------------------------------------------------------------
+      procedure printArray (anArray : Vector) is
+      item : float;
+      begin
+         Put_Line("Your array");
+         for I in anArray'First..anArray'Last loop
+            item := anArray(I);
+            Put(item, 1, 5, 0); --prints formated string
+            Put_Line(" ");
+         end loop;
+      end printArray;
+
+   --readArray()
+   begin
+      Put_Line("Enter Array values:");
+      for I in anArray'First..anArray'Last loop
+         Put("  >");
+         Get(item);
+         anArray(I) := item;
+      end loop;
+      printArray(anArray);
+   end readArray;
+     
+
+--array_processing()
+begin                                           -- Prompt for input
+       
+   Put_Line("Enter size of the Array:");
+   Get(size);
+   readArray(size);
+   --printArray(anArray);
+end array_processing;
+
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ gnatmake array_processing
+gnatmake: "array_processing" up to date.
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ ./array_processing
+Enter size of the Array:
+3
+Enter Array values:
+  >23
+  >4.567
+  >1
+Your array
+23.00000 
+4.56700 
+1.00000 
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ exit
+
+Script done on 2021-03-22 15:55:51-0400
+Script started on 2021-03-22 19:02:10-0400
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ cat array_processing
+cat: array_processing: No such file or directory
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ cat array_processing.cljl 
+cat: array_processing.clj: No such file or directory
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ cat array_processing.clj[1@s[1@r[1@c/array_processing.clj [A]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ cat src/
+
+;;; array_processing is a class that provides two methods: printArray and readArray
+;;; 
+;;; Completed by: Josiah Ryan
+;;; Date        : 03/22/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns array_processing)      ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; printArray prints the array passed to it
+;;; Receive:  an array 
+;;; Does   :  prints the array
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn printArray [array, index]             ; index moves through the array pointing to the next item to be printed
+  (if (> (count array) index)               ; checks if the array has been fully traversed
+    (do 
+      (printf "%s\n" (get array index))     ; prints the array item
+      (printArray array (+ index 1))        ; calls itself as form of looping
+      ))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; readArray prompts user for the values to store into the array
+;;; Receive: 	an array 
+;;; Does   :  Stores user inputed values into the array
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn readArray [size, array]
+  (let [ arraySize (count array) ]
+    (if (not= arraySize size)  ; array is not full yet
+      (do 
+        (print "  >") (flush)
+        (let [ item (float (read)) ]
+          (readArray size (conj array item))))     ; recursivly calls readArray until the array has been filled with user inputs
+      array                                        ; returns the filled array
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; main function
+;;; Input: size of array
+;;; Output: printed array (through the function printArray)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+  (print "Enter the size of the array: ") (flush)
+  (let [ size (read)                      ; read the string
+         array (vector)  ]
+
+    (print "Enter the array values:\n") (flush)
+    (printArray (readArray size array) 0)        ; calls readArray, and printArray on that user inputed array
+  )
+)
+
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ [Kclojure -m array_processn ing
+Enter the size of the array: 5
+Enter the array values:
+  >1
+  >2.56
+  >33
+  >67.3
+  >32
+1.0
+2.56
+33.0
+67.3
+32.0
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ exit
+
+Script done on 2021-03-22 19:03:25-0400
+Script started on 2021-03-22 17:33:08-0400
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ cat array_proc  ocessing.rb
+# arrayProcessing.java is a class that provides two methods: printArray and readArray
+# 
+# Completed by: Josiah Ryan
+# Date        : 03/22/21
+##########################################################
+
+# readArray prompts user for the values to store into the array
+# Receive: 	an array 
+# Does   :  Stores user inputed values into the array
+######################################################
+
+def readArray (anArray)
+  print "Enter array elements:\n"
+  for i in 1..anArray.length() do             #loops through the array and stores user inputed values into array
+    print "  >"
+    item = gets()
+    anArray[i] = item
+  end 
+end 
+
+# printArray prints the array passed to it
+# Receive:  an array 
+# Does   :  prints the array
+################################################
+def printArray (anArray)
+  print "your array is: "
+  for i in 1..anArray.length() do           #loops through array and prints values from the array
+    puts anArray[i]
+  end
+end
+
+def main
+  print "Enter the size of the array";
+  size = gets.to_i                        #gets size
+  anArray = Array.new(size)  
+  readArray(anArray)                      #reads in array
+  printArray(anArray)                     #prints off array
+end
+
+main]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ ruby array_processing
+array_processing:1: Invalid char `\x7F' in expression
+array_processing:1: Invalid char `\x02' in expression
+array_processing:1: Invalid char `\x01' in expression
+array_processing:1: Invalid char `\x01' in expression
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ ruby array_processing.rb
+Enter the size of the array5
+Enter array elements:
+  >  >^Z
+[1]+  Stopped                 ruby array_processing.rb
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ exit
+There are stopped jobs.
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ ruby array_processing.rb[Kcat array_processing.rb[5P./array_processing[1Pscript script.ada./array_processing[1Pscript script.ada./array_processing[1Pscript script.ada   ruby
+Script started, file is script.ruby
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ cat array_processing.rb
+# arrayProcessing.java is a class that provides two methods: printArray and readArray
+# 
+# Completed by: Josiah Ryan
+# Date        : 03/22/21
+##########################################################
+
+# readArray prompts user for the values to store into the array
+# Receive: 	an array 
+# Does   :  Stores user inputed values into the array
+######################################################
+
+def readArray (anArray)
+  print "Enter array elements:\n"
+  for i in 1..anArray.length() do             #loops through the array and stores user inputed values into array
+    print "  >"
+    item = gets()
+    anArray[i] = item
+  end 
+end 
+
+# printArray prints the array passed to it
+# Receive:  an array 
+# Does   :  prints the array
+################################################
+def printArray (anArray)
+  print "your array is: "
+  for i in 1..anArray.length() do           #loops through array and prints values from the array
+    puts anArray[i]
+  end
+end
+
+def main
+  print "Enter the size of the array ";
+  size = gets.to_i                        #gets size
+  anArray = Array.new(size)  
+  readArray(anArray)                      #reads in array
+  printArray(anArray)                     #prints off array
+end
+
+main]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ ruby array_processing.rb
+Enter the size of the array 5
+Enter array elements:
+  >1
+  >2
+  >3
+  >4
+  >5
+your array is: 1
+2
+3
+4
+5
+
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ exit
+Script done, file is script.ruby
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ script.  script.j ruby
+Script started, file is script.ruby
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ s cat array_processing.rb
+# arrayProcessing.java is a class that provides two methods: printArray and readArray
+# 
+# Completed by: Josiah Ryan
+# Date        : 03/22/21
+##########################################################
+
+# readArray prompts user for the values to store into the array
+# Receive: 	an array 
+# Does   :  Stores user inputed values into the array
+######################################################
+
+def readArray (anArray)
+  print "Enter array elements:\n"
+  for i in 1..anArray.length() do             #loops through the array and stores user inputed values into array
+    print "  >"
+    item = gets()
+    anArray[i] = item
+  end 
+end 
+
+# printArray prints the array passed to it
+# Receive:  an array 
+# Does   :  prints the array
+################################################
+def printArray (anArray)
+  print "your array is: \n"
+  for i in 1..anArray.length() do           #loops through array and prints values from the array
+    puts anArray[i]
+  end
+end
+
+def main
+  print "Enter the size of the array ";
+  size = gets.to_i                        #gets size
+  anArray = Array.new(size)  
+  readArray(anArray)                      #reads in array
+  printArray(anArray)                     #prints off array
+end
+
+main]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ ruby array_processing.rb
+Enter the size of the array 5
+Enter array elements:
+  >1
+  >2
+  >3
+  >4
+  >5
+your array is: 
+1
+2
+3
+4
+5
+
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ exit
+Script done, file is script.ruby
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07[00m$ cd clojure
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ clojure -m array_processing. [A]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ clojure -m array_processing[K
+[K[A]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ clojure -m array_processing
+Enter the size of the array:4
+Enter the array values:
+  >1
+  >2
+  >3
+  >4
+null
+null
+null
+null
+3
+4
+5
+6
+7
+]0;jr232@goldvm12: ~/Desktop/cs214/projects/07/clojure[01;32mjr232@goldvm12[00m:[01;34m~/Desktop/cs214/projects/07/clojure[00m$ exit
+There are stopped jobs.

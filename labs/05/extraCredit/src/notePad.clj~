@@ -1,0 +1,1 @@
+((fn [x y z] (max (Math/abs x) (Math/abs y) (Math/abs z))) 1 4 -7)

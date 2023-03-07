@@ -1,0 +1,141 @@
+;;;; functions.clj defines and executes several examples of code for CS214 project05
+;;;;
+;;;; Author: Josiah Ryan
+;;;; Date: 3/8/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns functions)
+
+;; parameter : takes in a list
+;; Returns   : a reversal of that list
+(defn my-reverse [sequence]
+	(if (< (count sequence) 2)
+	  sequence ; if true
+	  (do  ; if false
+	    (let [item (list (first sequence))] ; sets first to sequence[0]
+	      (concat (my-reverse (rest sequence)) item)    ; appending of item back onto sequence
+	    ) ; end let
+	  ) ; end do
+	) ; end if
+) ; end defn
+
+;; parameter : takes in a list
+;; Returns   : a reversal of that list & reverses any nested lists
+(defn super-reverse [sequence]
+ (if (< (count sequence) 2)
+   (if (list? (first sequence))
+     ;(do
+       (list (super-reverse (first sequence)))
+     ;)
+     ;else
+     sequence  ;returns sequence
+   ) ; end if (list?)
+ 
+   ;else (if count < sequence)
+   (do                              ; count > 2 (else)
+     (if (list? (first sequence))
+       (concat (super-reverse (rest sequence)) (list (my-reverse (first sequence))) )  ;if true
+
+       ;else (list?)
+       (do 	      		  	                        ;if false
+         (let [item (list (first sequence))] ; sets first to sequence[0]
+         (concat (super-reverse (rest sequence)) item) ; appending of item back
+	    ) ; end let                             ; onto sequence
+	  ) ; end do
+	) ; end if (list?)
+    ) ;end do
+  ) ; end if (count < sequence)
+) ; end defn
+
+;; parameters : element, sequence (list)
+;; returns : true (if element is in sequence) false (if element is not in sequence)
+(defn member? [element sequence]
+  (if (list? sequence)
+    (if (= (count sequence) 0) ; sequence is a list
+      false
+      (do     ; sequence is a non-empty list
+        (if (= (first sequence) element)
+	  true                    ; first is 'element', returns true
+	  (member? element (rest sequence))  ; first is not 'element'
+	) ; end if (= (first sequence))
+      ) ; end do
+    ) ; end if (= (count sequence) 0)
+    false ; sequence is not a sequence
+  ) ; end (if (list? sequence))
+) ; end (defn member?)
+
+;; Paramaters: sequence (a list) i and j (ints)
+;; Requirments: i <=  j, i >= 0, j <= (count sequence) 
+;; Return: the elements at index i through j
+(defn subsequence2 [ sequence i j ]
+  (if (or (> i j) (< i 0) (> j (count sequence)) (= (count sequence) 0))
+    nil  ; invalid case
+    ;(let [ element i returnSequence (list)]
+      (loop [element i
+      	    returnSequence (list)]
+        ;(while (<= element j)
+	  ;(if (>= element i)  ;don't need if let [ element i ] works
+	  ;) ; end if (>= element i)
+	(if (<= element j)
+          (recur (+ element 1) (concat returnSequence (list (nth element sequence))))
+	  returnSequence   ; else
+	) ; end if
+        ;) ; end while
+	;returnSequence ; return
+      ) ; end loop
+    ;) ; end let
+  ) ; end if (or ...  ; invalid cases)
+) ; end defn subsequence
+
+(defn subsequence [sequence i j]
+  (if (or (> i j) (< i 0) (>= j (count sequence)) (= (count sequence) 0))
+    nil  ; invalid case
+    (if (and (= i 0) (= j -1))
+      sequence                          ; finished, return
+      (if (= i 0)                       ; unfinished
+        (if (= (count sequence) (+ j 1))
+	  sequence   ; sequence is ready to be returned (sequence is now only i - j)
+	  
+	  ;else: This will cut off everything in the list after the jth index.
+	  (subsequence (drop-last sequence) i j) ; recurs, drops last from sequence. 
+	) ; end if (= (count sequence))
+	
+	;else: i > 0
+	;This will cut off everything in the list before the ith index
+	(subsequence (drop sequence) (- i 1) (- j 1)) ; drops sequence[0], decrements i and j. 
+      ) ; end if (= i 0 )
+    ) ; end if (and )
+  ) ; end if (or )
+) ; end defn subsequence
+
+(defn -main []
+  ; testing my-reverse
+  (println "testing (my-reverse '(a b (c d) (e (f g)))): " )
+  (println "expecting: ((e (f g)) (c d) b a)")
+  (println "get      :" (my-reverse '(a b (c d) (e (f g)))) )
+  (println)
+  ; testing super-reverse
+  (println "testing (super-reverse '(a b (c d) (e (f g))))")
+  (println "expecting: (((g f) e) (d c) b a)")
+  ;(println "get      :" (super-reverse '(a b (c d))))
+  (println "get      :" (super-reverse '(a b (c d) (e (f g)))))
+  (println)
+  ; testing member?
+  (println "testing (member?):")
+  (println "expecting 3 trues")
+  (println   (member? '(1 2) '((1 2) 3 (4 (5 6)))) )
+  (println  (member? 3 '((1 2) 3 (4 (5 6)))) )
+  (println  (member? '(4 (5 6)) '((1 2) 3 (4 (5 6)))) )
+  (println "expecting 3 falses")
+  (println  (member? 1 '((1 2) 3 (4 (5 6)))) )
+  (println  (member? 2 '((1 2) 3 (4 (5 6)))) )
+  (println  (member? 4 '((1 2) 3 (4 (5 6)))) )
+  (println)
+  ; testing subsequence
+  (println "testing (subsequence)")
+  (println "expecting : (2 (3 4))")
+  (println "get       :" (subsequence '(1 2 (3 4) (5 (6 7))) 1 2) )
+  (println "expecting : (3 4 5 6)")
+  (println "get       :" (subsequence '(1 2 3 4 5 6 7) 2 4) )
+        
+); end defn

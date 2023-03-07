@@ -1,0 +1,77 @@
+;;;; factorial.clj recieves an integer n and prints n!
+;;;;
+;;;; Input: n integer
+;;;; Precondition: n is an integer
+;;;; Output: n! (n * (n-1) * (n-2) * ... * 1) -- if n is positive
+;;;;
+;;;; Completed by: Josiah Ryan
+;;;; Date: 3/3/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns factorial)                                 ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; factorial() .
+;;; Receive: n an integer
+;;; Precondition: n is an integer
+;;; Output: n!
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; direct-recursive version
+
+(defn factorial [n]
+   ;; probably have to (let) create a variable i and make a for loop
+   (let
+     [ i (integer 1)
+       total (integer 1) ]
+   (if (i <= n)
+     (do
+       
+       (printf "The logarithm of %s is %s%n" start (Math/log10 start))
+       (displayLogTable (+ start step) stop step)
+      )
+   )
+)
+
+;; loop (indirect-recursion) version
+(defn displayLogTable2 [start stop step]
+  (loop [i start]                           ; set i to start
+    (when (<= i stop)                       ; if i <= stop:
+      (printf "The logarithm of %f is %f\n" ;  print one line
+                  i (Math/log10 i)
+      )
+      (recur (+ i step))                    ; recurse, i += step
+    )
+  )
+)
+
+;; indirect/tail-recursive version (just using recur)
+(defn displayLogTable3 [start stop step]
+  (if (<= start stop)                     ; if start <= stop:
+    (do                                      ; do these two things:
+      (printf "The logarithm of %f is %f\n"  ; - print one line
+                  start (Math/log10 start)
+      )
+      (recur (+ start step) stop step)       ; - recurse, start+=step
+    )
+  )
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; -main is a 'driver' for the displayLogTable() functions.
+;;; Input: start, stop and increment.
+;;; Output: The table of logarithms 
+;;;          from start to stop by increment
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+ (print "Enter an integer n, and recieve n!: ") (flush)
+ (let
+    [ start (integer (read)) ] 
+    (println)
+    (factorial n) 
+    (println)
+ )
+)
+
+

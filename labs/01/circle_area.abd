@@ -1,0 +1,46 @@
+-- circle_area.adb computes the area of a circle.
+--
+-- Input: The radius of the circle.
+-- Precondition: The radius is a positive number.
+-- Output: The area of the circle.
+--
+-- Begun by: Prof. Adams, CS 214 at Calvin College.
+-- Completed by: Josiah Ryan
+-- Date: Feb/05/21
+----------------------------------------------------
+
+with Ada.Text_IO, Ada.Float_Text_IO;
+use  Ada.Text_IO, Ada.Float_Text_IO;
+
+procedure circle_area is
+
+   radius, area : float; 
+
+   -- function circleArea computes a circle's area, given its radius
+   -- Parameter: r, a float
+   -- Precondition: r >= 0.0
+   -- Return: the area of the circle whose radius is r
+   ----------------------------------------------------
+   function circleArea(r: in float) return float is -- declares a function 
+      PI : constant := 3.1415927;  --sets a constant for pi
+   begin  -- starts the execution part of the function
+      return PI * r ** 2; --calculates and returns area
+   end circleArea; --end of function
+
+begin    -- start of 'main'
+   New_Line; -- adds a line of white space
+   Put_Line("To compute the area of a circle,"); -- prints that string, and goes to a new line
+   Put("enter its radius: "); -- prints that string, but doesnt go to a new line
+   Get(radius);  -- grabs the user inputed value and stores it in 'radius'
+
+   area := circleArea(radius); -- calculates area and stores it in area
+
+   New_Line;  -- adds a line of white space
+   Put("The circle's area is "); -- prints line
+   Put(area);  -- prints area
+   New_Line; New_Line; -- adds 2 lines of white space
+
+   Put("The circle's area is "); -- prints that string
+   Put(area, 1, 15, 0); -- outputs the area formated to have at least one digit before the decimal place, and 15 after it 
+   New_Line; New_Line; -- adds 2 lines of white space
+end circle_area; -- end of 'main'

@@ -1,0 +1,93 @@
+Script started on 2021-02-12 14:01:48-0500
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ cat exa  xample6.lex example6.y
+%{
+#include <stdio.h>
+#include <stdlib.h>           /* atoi() */
+#include <string.h>           /* strcmp() */
+#include "example6.tab.h"
+%}
+%%
+[0-9]+                  yylval = atoi(yytext); return NUMBER;
+heat                    return TOKHEAT;
+on|off                  yylval = !strcmp(yytext,"on"); return STATE;
+set                     return TOKSET;
+temperature             return TOKTEMPERATURE;
+humidity 		return TOKHUMIDITY;
+\n                      /* ignore end of line */;
+[ \t]+                  /* ignore whitespace */;
+%u%
+
+%{
+#include <stdio.h>
+#include <string.h>
+
+/* declarations */
+int yylex (void);
+void yyerror (char const *);
+int yyparse(void);
+
+/* definitions */ 
+void yyerror(const char *str) {
+        fprintf(stderr,"error: %s\n",str);
+}
+ 
+int yywrap() {
+        return 1;
+} 
+ 
+int main() {
+        yyparse();
+} 
+
+%}
+
+%token NUMBER TOKHEAT STATE TOKSET TOKTEMPERATURE TOKHUMIDITY
+%%
+commands: /* empty */
+        | commands command
+        ;
+
+command:
+        heat_switch
+        | temperature_set
+	| humidity_set
+	;
+
+humidity_set:
+	TOKSET TOKHUMIDITY NUMBER
+	{
+		printf("\tHumidity set to %d\n",$3);
+	}
+	;
+
+heat_switch:
+        TOKHEAT STATE
+        {
+	 	if ($2) {  /* if STATE == 1 */
+                        printf("\tHeat turned on\n");
+                } else {
+                        printf("\tHeat turned off\n");
+                }
+	}
+        ;
+
+temperature_set:
+        TOKSET TOKTEMPERATURE NUMBER
+        {
+                printf("\tTemperature set to %d\n",$3);
+        }
+        ;
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ make
+make: 'example6' is up to date.
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ ./example6
+set temer   mperature 50
+	Temperature set to 50
+set humidity 100
+	Humidity set to 100
+turn      heater off
+er	Heat turned off
+heat on
+	Heat turned on
+]0;jr232@gold14: ~/Desktop/cs214/labs/02[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/labs/02[00m$ exit
+
+Script done on 2021-02-12 14:03:14-0500

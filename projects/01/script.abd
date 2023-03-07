@@ -1,0 +1,83 @@
+Script started on 2021-02-10 13:09:06-0500
+]0;jr232@goldvm19: ~/Desktop/cs214/projects/01[01;32mjr232@goldvm19[00m:[01;34m~/Desktop/cs214/projects/01[00m$ cat rectangle_area.abd
+-- rectangle_area.adb computes the area of a rectangle.
+--
+-- Input: The length and width of the rectangle.
+-- Precondition: The length and width is a positive number.
+-- Output: The area of the rectangle.
+--
+-- Begun by: Prof. Adams, CS 214 at Calvin College.
+-- Completed by: Josiah Ryan
+-- Date: Feb/10/21
+----------------------------------------------------
+
+with Ada.Text_IO, Ada.Float_Text_IO;
+use  Ada.Text_IO, Ada.Float_Text_IO;
+
+procedure rectangle_area is
+
+   length, width, area : float; 
+
+   -- function rectangleArea computes a rectangle's area, given its length and width
+   -- Parameter: l, w, a float
+   -- Precondition: l & w >= 0.0
+   -- Return: the area of the rectangle whose width and height are w and h
+   ----------------------------------------------------
+   function rectangleArea(l, w: in float) return float is -- declares a function 
+   begin  -- starts the execution part of the function
+      return l * w; --calculates and returns area
+   end rectangleArea; --end of function
+
+begin    -- start of 'main'
+   New_Line; -- adds a line of white space
+   Put_Line("To compute the area of a rectangle,"); -- prints that string, and goes to a new line
+   Put("enter its length: "); -- prints that string, but doesnt go to a new line
+   Get(length);  -- grabs the user inputed value and stores it in 'length'
+   Put("enter its width: "); -- prints that string, but doesnt go to a new line
+   Get(width);  -- grabs the user inputed value and stores it in 'width'
+
+   area := rectangleArea(length, width); -- calculates area and stores it in area
+
+   New_Line;  -- adds a line of white space
+   Put("The rectangle's area is "); -- prints line
+   Put(area);  -- prints area
+   New_Line; New_Line; -- adds 2 lines of white space
+
+   Put("The rectangle's area is "); -- prints that string
+   Put(area, 1, 15, 0); -- outputs the area formated to have at least one digit before the decimal place, and 15 after it 
+   New_Line; New_Line; -- adds 2 lines of white space
+end rectangle_area; -- end of 'main'
+
+]0;jr232@goldvm19: ~/Desktop/cs214/projects/01[01;32mjr232@goldvm19[00m:[01;34m~/Desktop/cs214/projects/01[00m$ ./rectangle_area
+
+To compute the area of a rectangle,
+enter its length: 30
+enter its width: 3.6
+
+The rectangle's area is  1.08000E+02
+
+The rectangle's area is 108.000000000000000
+
+]0;jr232@goldvm19: ~/Desktop/cs214/projects/01[01;32mjr232@goldvm19[00m:[01;34m~/Desktop/cs214/projects/01[00m$ ./rectangle_area
+
+To compute the area of a rectangle,
+enter its length: 5
+enter its width: 4
+
+The rectangle's area is  2.00000E+01
+
+The rectangle's area is 20.000000000000000
+
+]0;jr232@goldvm19: ~/Desktop/cs214/projects/01[01;32mjr232@goldvm19[00m:[01;34m~/Desktop/cs214/projects/01[00m$ ./rectangle_area
+
+To compute the area of a rectangle,
+enter its length: 2.456
+enter its width: 3.666 7
+
+The rectangle's area is  9.00615E+00
+
+The rectangle's area is 9.006152153015137
+
+]0;jr232@goldvm19: ~/Desktop/cs214/projects/01[01;32mjr232@goldvm19[00m:[01;34m~/Desktop/cs214/projects/01[00m$ exit
+
+Script done on 2021-02-10 13:09:53-0500

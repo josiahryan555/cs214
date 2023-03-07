@@ -1,0 +1,9 @@
+TO DO 
+
+
+clojure:
+    -input (weird error when reading in user input)     ?
+    -table : code is not entering the loop              ?
+    -input temp1 and temp2, modify code to work with these new values
+
+

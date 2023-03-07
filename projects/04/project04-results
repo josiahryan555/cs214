@@ -1,0 +1,237 @@
+Script started on 2021-03-02 17:22:40-0500
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ cat Factorial.java
+/* Factorial.java recieves an integer n then computes and returns n!
+ *
+ * Input: n
+ * PRE: n is an integer
+ * Output: !n (or n*(n-1)*(n-2)*...* 1) --if n is postive that is)
+ * Author: Josiah Ryan
+ ********************************************************/
+import java.util.Scanner; 		// Get input
+
+class Factorial{
+
+  public static void main(String[] args){
+    Scanner keyboard = new Scanner(System.in);
+    System.out.print("\nTo compute n!, enter n: ");
+    int n;
+    int nFactorial = 1;
+    n = keyboard.nextInt();
+
+    // calculates n! and stores it in nFactorial
+    for (int i=1; i<=n; i++){ 
+	nFactorial *= i;  //returns 24 if n = 5
+    }
+    System.out.printf("\n%d! = %d\n\n", n, nFactorial);
+    
+  }
+}
+
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ java    cat Factorial.java[4Pjava Factorialc -deprecation Factorial.java[19P Factorialc -deprecation Factorial.java
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ javac -deprecation Factorial.java[15Pcat Factorial.java[4Pjava Factorial
+
+To compute n!, enter n: 5
+
+5! = 120
+
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ 2 java Factorial
+
+To compute n!, enter n: 2
+
+2! = 2
+
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ java Factorial
+
+To compute n!, enter n: 4 3
+
+3! = 6
+
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ yay   yay!
+WARNING:root:could not open file '/etc/apt/sources.list'
+
+yay!: command not found
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ exit
+
+Script done on 2021-03-02 17:24:28-0500
+Script started on 2021-03-02 18:07:58-0500
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ s cat factorial.adb
+-- factorial.adb takes an interger input n and returns n!
+--
+-- Input: n, an integer
+-- Precondition: is an integer 
+-- Output: n! (n * (n-1) * (n-2) * ... * 1)  -- if n is positive
+--
+-- Author: Josiah Ryan
+-- Date:   3/2/21
+--------------------------------------------------------------
+
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use  Ada.Text_IO, Ada.Integer_Text_IO;
+
+procedure factorial is
+
+   N              : Integer := 0;
+   N_Factorial, I : Integer := 1;
+   
+begin                                           -- Prompt for input
+   Put("Enter an integer and you will recieve its factorial: ");
+   Get(N);
+   
+   while I <= N  --calculates N!
+   loop 
+      N_Factorial := N_Factorial * I;
+      I := I + 1;
+   end loop; 
+    Put(N); Put("! = "); Put(N_Factorial); Put_Line(""); --prints N!
+end factorial;
+
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ gnatmake factorial.adb
+gnatmake: "factorial" up to date.
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ./factorial
+Enter an integer and you will recieve its factorial: 5
+          5! =         120
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ./factorial
+Enter an integer and you will recieve its factorial: 4
+          4! =          24
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ 
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ./factorial
+Enter an integer and you will recieve its factorial: 3
+          3! =           6
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ yay!
+WARNING:root:could not open file '/etc/apt/sources.list'
+
+yay!: command not found
+]0;jr232@goldvm20: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm20[00m:[01;34m~/Desktop/cs214/projects/04[00m$ exit
+
+Script done on 2021-03-02 18:08:50-0500
+Script started on 2021-03-05 12:58:56-0500
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ cat   /src    src. /factorial.clj
+;;;; factorial.clj recieves an integer n and prints n!
+;;;;
+;;;; Input: n integer
+;;;; Precondition: n is an integer
+;;;; Output: n! (n * (n-1) * (n-2) * ... * 1) -- if n is positive
+;;;;
+;;;; Completed by: Josiah Ryan
+;;;; Date: 3/3/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns factorial)                                 ; name the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; factorial() .
+;;; Receive: n an integer and total - variable to be returned
+;;; Precondition: n is an integer
+;;; Output: n!
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; loop (indirect-recursion) version
+;(defn factorial [n total]
+  ;(let
+    ;[total 1]				; sets total (to be returned) to 1
+    ;(loop [i 1]                           ; set i = 1
+ ;     (when (>= n 1)                       ; if i <=
+  ;      (* total n)			    ;will calculate n!
+        ;(def i )	 			    ; increments i
+;	(recur (- n 1) total)            ; recursive call
+ ;      ) ; end when
+     ;) ; end loop
+   ;) ; end let [total 1]
+  ; (+ total 0)
+; ) ; end defn
+
+
+(defn factorial [n total]
+   (if (>= n 1)
+       (factorial (- n 1) (* total n))		; if 
+       total  	       	     	       	  	; else
+   ) ; end if
+   
+) ; end defn 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; -main is a 'driver' for the factorial function.
+;;; Input: n.
+;;; Output: n! 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn -main []
+ (print "Enter an integer n, and recieve n!: ") (flush)
+ (let
+    [ n (int (read))
+      total (int 1) ]
+    ;[ n read ]						; recieves an input n
+    (println)
+    (printf "%s! = %s" n (factorial n total))  ;; prints out n! 
+    (println)
+ ) ; end let
+) ; end defn
+
+
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ co lou jure -m fun   factorial
+Enter an integer n, and recieve n!: 5
+
+5! = 120
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ clojure -m factorial
+Enter an integer n, and recieve n!: 4
+
+4! = 24
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ clojure -m factorial
+3Enter an integer n, and recieve n!: 
+
+3! = 6
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ clojure -m factorial
+Enter an integer n, and recieve n!: 2
+
+2! = 2
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ YAY!
+WARNING:root:could not open file '/etc/apt/sources.list'
+
+YAY!: command not found
+]0;jr232@gold14: ~/Desktop/cs214/projects/04/clojure[01;32mjr232@gold14[00m:[01;34m~/Desktop/cs214/projects/04/clojure[00m$ exit
+
+Script done on 2021-03-05 13:00:06-0500
+Script started on 2021-03-05 15:37:23-0500
+]0;jr232@goldvm18: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm18[00m:[01;34m~/Desktop/cs214/projects/04[00m$ cat factorial.rb
+#! /usr/bin/ruby
+# factorial.rb takes an int n and returns n!
+#
+# Author: Josiah Ryan
+# Date  : 05 March 21
+# Input:  an int n
+# Precondition: n in an int
+# Output: n! (n * (n-1) * (n-2) * ... * 1) #if n is positive
+
+
+if __FILE__ == $0
+   print "Enter an integer n and get n! \n"
+   n = gets.to_i                   #converts string to int
+
+   i = 1
+   total = 1
+   while i <= n 
+     total = total * i         # makes n! calculations 
+     i = i + 1
+   end
+   puts "%d! = %d" % [n, total]  # puts formated string
+end
+
+]0;jr232@goldvm18: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm18[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ruby factorial.rb
+Enter an integer n and get n! 
+5
+5! = 120
+]0;jr232@goldvm18: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm18[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ruby factorial.rb
+Enter an integer n and get n! 
+4
+4! = 24
+]0;jr232@goldvm18: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm18[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ruby factorial.rb
+Enter an integer n and get n! 
+3
+3! = 6
+]0;jr232@goldvm18: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm18[00m:[01;34m~/Desktop/cs214/projects/04[00m$ ruby factorial.rb
+Enter an integer n and get n! 
+2
+2! = 2
+]0;jr232@goldvm18: ~/Desktop/cs214/projects/04[01;32mjr232@goldvm18[00m:[01;34m~/Desktop/cs214/projects/04[00m$ exit
+
+Script done on 2021-03-05 15:37:54-0500

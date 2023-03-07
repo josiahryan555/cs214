@@ -1,0 +1,122 @@
+1.
+
+a. Java character literal:
+
+<char> ::=  ‘ <character> ‘
+
+<character> ::= <letter> | <digit+> | <symbol> | <unicode>
+
+<symbol> ::=   ! | @ | # | $ | % | ^ | & | * | ( | ) | - | _ | + | = | { | [ | } | ] | \ | : | ; | ' | “ | < | , | > | . | ? | / | \n| \t | ~ |   | ` |   | | 
+
+<unicode> ::= \u<four_hex_num>
+
+<four_hex_num> ::= <hex><hex><hex><hex>
+
+<hex> ::= <digit> | a | b | c | d | e | f
+
+
+b. Java character string literal:
+
+<string> ::= “ <char+> “
+
+<char+> ::= <char> | <char> <char+> | Ɛ
+
+
+c. Java integer literal:
+
+<int> ::= <sign> <base> <number>
+
+<sign> ::= - |   | +
+
+<number> ::= <hex> | <hex> <number>
+
+<base> ::= Ɛ | 0 | 0x | 0X | 0b
+
+
+d. A Java real (floating point) literal:
+
+<float>  ::= <sign> <number> . <number> <opte>
+
+<opte> ::= e <number> | e- <number> | Ɛ 
+
+
+e. A Java identifier: 
+
+<identifier> ::= <start_char> <following_chars> 
+
+<start_char> ::= <letter> | $ | _
+
+<following_chars> ::= <start_char> <following_chars> | <digit> <following_chars> | Ɛ
+
+
+f. A Java function declaration (prototype): 
+
+<function> ::= <modifiers> <data_type> <identifier> ( <var_list> ) ;
+
+<modifiers> ::= <modifier> <modifiers> | <modifier> | Ɛ
+
+<modifier> ::= public | private | static | void | main | protected | final | abstract | synchronized | volatile | Ɛ
+
+<data_type> ::= void | double | int | string | char | boolean | float | byte | short | long
+
+<var_list> ::= <data_type> <identifier> , <var_list> | <data_type> <identifier>
+
+
+g. A Java if statement (you may assume that the nonterminals <statement> and <expression> are defined elsewhere): 
+
+<if_stmt> ::= if ( <expression> ) <statement> <opt_else>
+
+<opt_else> ::= else <statement> <opt_else> | Ɛ
+
+
+h. A Java while statement (you may assume that the nonterminals <statement> and <expression> are defined elsewhere): 
+
+<while_stmt> ::= while ( <expression> ) { <statement> }
+
+
+2. Prove that the following grammar is ambiguous:
+
+<S> ::= <A>
+
+<A> ::= <A> + <A> | <id>
+
+<id> ::= a | b | c
+
+
+i.  a + b + c → <id> + <id> + c → <A> + <A> + <id> → <A> + <A> → <A> → <S>
+
+ii. a + b + c → a + <id> + <id> → <id> + <A> + <A> → <A> + <A> → <A> → <S>
+
+The grammar is ambiguous because the statement ‘a + b + c’ has more than one parse tree that can be built for it.
+
+
+3. Give a left-most derivation for A = A * (B + C) using the following BNF grammar:
+
+<assign> ::= <id> = <expr>
+
+<id> ::= A | B | C
+
+<expr> ::= <expr> + <term> | <term>
+
+<term> ::= <term> * <factor> | <factor>
+
+<factor> ::= ( <expr> ) | <id>
+
+
+<assign> ::= <id> = <expr> → 
+
+A = <term> → 
+
+A = <term> * <factor> → 
+
+A = <factor> * ( <expr> ) → 
+
+A = <id> * ( <expr> + <term> ) →
+
+A = A * ( <term> + <factor> ) →
+
+A = A * ( <factor> + <id> ) →
+
+A = A * ( <id> + C ) →
+
+A = A * ( B + C )

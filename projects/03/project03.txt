@@ -1,0 +1,523 @@
+Script started on 2021-02-24 13:58:53-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat script.java script.adb script.cl j c script.rb
+Script started on 2021-02-22 12:58:12-0500
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat java    GradeCalc.java
+/*GradeCalc.java is a driver for function gradeCalc().
+ *
+ *By: Josiah Ryan
+ *Date: feb/22/21
+ ***********************************************************************/
+
+import java.util.Scanner;
+
+public class GradeCalc {
+
+    public static void main(String[] args) {
+	Scanner keyboard = new Scanner(System.in);
+	System.out.println("\nEnter your grade (out of 100): "); // prompt
+        int grade = keyboard.nextInt(); // reads in grade
+	System.out.println(gradeCalc(grade)); // calculates grade and outputs it
+    }
+
+    /**************************************************************************
+     * gradeCalc() converts a grade out of 100 into a letter grade.
+     * 
+     * Receive: grade, an int.
+     * PRE: 0 =< grade <= 100
+     * Return: the letter grade corresponding to the number grade given
+     */
+    public static char gradeCalc(int grade) {
+	switch (grade / 10 ) {
+	    
+	case 10: case 9:
+	    return 'A';
+	case 8:
+            return 'B';
+         case 7:
+            return 'C';
+         case 6:
+            return 'D';
+         default:
+            return 'F';
+	}
+      }	
+}
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat GradeCalc.javaemacs homework02.c & ls[Kcd /home/jr232/Desktop/cs232/project002[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ split[K
+[K[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ splitcd /home/jr232/Desktop/cs232/project002[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ls[K
+[K[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ lsemacs homework02.c & [3Pcat GradeCalc.java[Kjavac deprecation GradeCalc.java
+error: Class names, 'deprecation', are only accepted if annotation processing is explicitly requested
+1 error
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ javac deprecation GradeCalc.java[1@-
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+99
+A
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+87
+B
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+78
+C
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+63
+D
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+34
+F
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ exit
+
+Script done on 2021-02-22 12:59:42-0500
+cat: script.adb: No such file or directory
+Script started on 2021-02-24 13:35:49-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure/src[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure/src[00m$ cat   t grade_calc.clj    .clj
+;;;; grade_calc.clj is a driver for function gradeCalc.
+;;;;
+;;;; Input:  A grade out of 100
+;;;; Output: The letter grade cooresponding to that number grade
+;;;;
+;;;; Usage: clojure -m grade_calc
+;;;;
+;;;; Author: Josiah Ryan
+;;;; Date: 02/24/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns grade_calc)			; name of the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; gradeCalc() returns the letter grade corresponding to the given integer grade.
+;;; Receive: grade, an int.
+;;; Precondition: grade is between 0 and 100
+;;; Return: the letter grae corresponding to the int grade given
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn gradeCalc [grade]
+  ;(cond ((== (quot grade 10) 10) 'A'))
+  (cond (== (quot grade 10) 10) 'A   ; quot is division
+        (== (quot grade 10) 9)  'A
+	(== (quot grade 10) 8)  'B
+	(== (quot grade 10) 7)  'C
+	(== (quot grade 10) 6)  'D
+	:else         'F
+  )
+)
+
+(defn parse-int [s]
+   (Integer. (re-find  #"\d+" s )))
+
+(defn -main []
+ (print "\nEnter your numeric grade: ") (flush)
+ (let
+   [ grade (read-line) ]		; reads grade (a string)
+   (println "Your letter grade is: " (gradeCalc (parse-int grade)) "\n") 	;display the letter grade
+ )
+)]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure/src[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure/src[00m$ clo   cd ..
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 100
+Your letter grade is:  A 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+99
+Enter your numeric grade: 
+Your letter grade is:  A 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 87
+Your letter grade is:  B 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 76
+Your letter grade is:  C 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 65
+Your letter grade is:  D 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 43
+Your letter grade is:  F 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ exit
+
+Script done on 2021-02-24 13:37:10-0500
+Script started on 2021-02-24 13:55:25-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat grade_calc.rb
+#! /usr/bin/ruby
+# grade_calc.rb translates an integer represented grade to a letter grade
+# Author: Josiah Ryan
+# Date: 02/24/21
+##############################################################################
+
+# Input:  a integer grade
+# Precondition: The the grade should be between 0 and 100
+# Output: the letter grade corresponding to the int grade given
+
+def gradeCalc(grade)
+  case grade / 10 # switch-case
+  when 10, 9
+    "A"
+  when 8
+    "B"
+  when 7
+    "C"
+  when 6
+    "D"
+  else
+    "F"
+  end
+end
+
+if __FILE__ == $0
+  print "Enter a numeric grade between 0-100: "
+  grade = gets            #gets input
+  print "Your letter grade is: "
+  puts gradeCalc(grade.to_i) # .to_i converts string to int
+end
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat grade_calc.rblojure -m grade_calc[4Pat grade_calc.rb[Kruby grade_calc.rb
+Enter a numeric grade between 0-100: 100
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 98
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 87
+Your letter grade is: B
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 76
+Your letter grade is: C
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 61
+Your letter grade is: D
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 58
+Your letter grade is: F
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb23  
+Enter a numeric grade between 0-100: ^[[A    21
+Your letter grade is: F
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ exit
+
+Script done on 2021-02-24 13:56:31-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ [Kscript   script.rb
+Script started, file is script.rb
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat grade_calc.rb
+#! /usr/bin/ruby
+# grade_calc.rb translates an integer represented grade to a letter grade
+# Author: Josiah Ryan
+# Date: 02/24/21
+##############################################################################
+
+# Input:  a integer grade
+# Precondition: The the grade should be between 0 and 100
+# Output: the letter grade corresponding to the int grade given
+
+def gradeCalc(grade)
+  case grade / 10 # switch-case
+  when 10, 9
+    "A"
+  when 8
+    "B"
+  when 7
+    "C"
+  when 6
+    "D"
+  else
+    "F"
+  end
+end
+
+if __FILE__ == $0
+  print "Enter a numeric grade between 0-100: "
+  grade = gets            #gets input
+  print "Your letter grade is: "
+  puts gradeCalc(grade.to_i) # .to_i converts string to int
+end
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 100
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 90
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 87
+Your letter grade is: B
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 78
+Your letter grade is: C
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 67
+Your letter grade is: D
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 59
+Your letter grade is: F
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ exit
+Script done, file is script.rb
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat     cat script.rb
+Script started on 2021-02-24 14:00:25-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat grade_calc.rb
+#! /usr/bin/ruby
+# grade_calc.rb translates an integer represented grade to a letter grade
+# Author: Josiah Ryan
+# Date: 02/24/21
+##############################################################################
+
+# Input:  a integer grade
+# Precondition: The the grade should be between 0 and 100
+# Output: the letter grade corresponding to the int grade given
+
+def gradeCalc(grade)
+  case grade / 10 # switch-case
+  when 10, 9
+    "A"
+  when 8
+    "B"
+  when 7
+    "C"
+  when 6
+    "D"
+  else
+    "F"
+  end
+end
+
+if __FILE__ == $0
+  print "Enter a numeric grade between 0-100: "
+  grade = gets            #gets input
+  print "Your letter grade is: "
+  puts gradeCalc(grade.to_i) # .to_i converts string to int
+end
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 100
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 90
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 87
+Your letter grade is: B
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 78
+Your letter grade is: C
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 67
+Your letter grade is: D
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 59
+Your letter grade is: F
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ exit
+
+Script done on 2021-02-24 14:01:19-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ script      cat script.java script.adb script.cl o[K[A]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat script.java script.adb script.clo[K]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat script.java script.adb script.cl
+o [A]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat script.java script.adb script.c[K
+[K[A]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat script.java script.adb script.cl j script.rb
+Script started on 2021-02-22 12:58:12-0500
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat java    GradeCalc.java
+/*GradeCalc.java is a driver for function gradeCalc().
+ *
+ *By: Josiah Ryan
+ *Date: feb/22/21
+ ***********************************************************************/
+
+import java.util.Scanner;
+
+public class GradeCalc {
+
+    public static void main(String[] args) {
+	Scanner keyboard = new Scanner(System.in);
+	System.out.println("\nEnter your grade (out of 100): "); // prompt
+        int grade = keyboard.nextInt(); // reads in grade
+	System.out.println(gradeCalc(grade)); // calculates grade and outputs it
+    }
+
+    /**************************************************************************
+     * gradeCalc() converts a grade out of 100 into a letter grade.
+     * 
+     * Receive: grade, an int.
+     * PRE: 0 =< grade <= 100
+     * Return: the letter grade corresponding to the number grade given
+     */
+    public static char gradeCalc(int grade) {
+	switch (grade / 10 ) {
+	    
+	case 10: case 9:
+	    return 'A';
+	case 8:
+            return 'B';
+         case 7:
+            return 'C';
+         case 6:
+            return 'D';
+         default:
+            return 'F';
+	}
+      }	
+}
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat GradeCalc.javaemacs homework02.c & ls[Kcd /home/jr232/Desktop/cs232/project002[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ split[K
+[K[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ splitcd /home/jr232/Desktop/cs232/project002[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ls[K
+[K[A]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ lsemacs homework02.c & [3Pcat GradeCalc.java[Kjavac deprecation GradeCalc.java
+error: Class names, 'deprecation', are only accepted if annotation processing is explicitly requested
+1 error
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ javac deprecation GradeCalc.java[1@-
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+99
+A
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+87
+B
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+78
+C
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+63
+D
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ java GradeCalc
+
+Enter your grade (out of 100): 
+34
+F
+]0;jr232@goldvm10: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm10[00m:[01;34m~/Desktop/cs214/projects/03[00m$ exit
+
+Script done on 2021-02-22 12:59:42-0500
+cat: script.adb: No such file or directory
+Script started on 2021-02-24 13:35:49-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure/src[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure/src[00m$ cat   t grade_calc.clj    .clj
+;;;; grade_calc.clj is a driver for function gradeCalc.
+;;;;
+;;;; Input:  A grade out of 100
+;;;; Output: The letter grade cooresponding to that number grade
+;;;;
+;;;; Usage: clojure -m grade_calc
+;;;;
+;;;; Author: Josiah Ryan
+;;;; Date: 02/24/21
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns grade_calc)			; name of the program
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; gradeCalc() returns the letter grade corresponding to the given integer grade.
+;;; Receive: grade, an int.
+;;; Precondition: grade is between 0 and 100
+;;; Return: the letter grae corresponding to the int grade given
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn gradeCalc [grade]
+  ;(cond ((== (quot grade 10) 10) 'A'))
+  (cond (== (quot grade 10) 10) 'A   ; quot is division
+        (== (quot grade 10) 9)  'A
+	(== (quot grade 10) 8)  'B
+	(== (quot grade 10) 7)  'C
+	(== (quot grade 10) 6)  'D
+	:else         'F
+  )
+)
+
+(defn parse-int [s]
+   (Integer. (re-find  #"\d+" s )))
+
+(defn -main []
+ (print "\nEnter your numeric grade: ") (flush)
+ (let
+   [ grade (read-line) ]		; reads grade (a string)
+   (println "Your letter grade is: " (gradeCalc (parse-int grade)) "\n") 	;display the letter grade
+ )
+)]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure/src[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure/src[00m$ clo   cd ..
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 100
+Your letter grade is:  A 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+99
+Enter your numeric grade: 
+Your letter grade is:  A 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 87
+Your letter grade is:  B 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 76
+Your letter grade is:  C 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 65
+Your letter grade is:  D 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ clojure -m grade_calc
+
+Enter your numeric grade: 43
+Your letter grade is:  F 
+
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03/clojure[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03/clojure[00m$ exit
+
+Script done on 2021-02-24 13:37:10-0500
+Script started on 2021-02-24 14:00:25-0500
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ cat grade_calc.rb
+#! /usr/bin/ruby
+# grade_calc.rb translates an integer represented grade to a letter grade
+# Author: Josiah Ryan
+# Date: 02/24/21
+##############################################################################
+
+# Input:  a integer grade
+# Precondition: The the grade should be between 0 and 100
+# Output: the letter grade corresponding to the int grade given
+
+def gradeCalc(grade)
+  case grade / 10 # switch-case
+  when 10, 9
+    "A"
+  when 8
+    "B"
+  when 7
+    "C"
+  when 6
+    "D"
+  else
+    "F"
+  end
+end
+
+if __FILE__ == $0
+  print "Enter a numeric grade between 0-100: "
+  grade = gets            #gets input
+  print "Your letter grade is: "
+  puts gradeCalc(grade.to_i) # .to_i converts string to int
+end
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 100
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 90
+Your letter grade is: A
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 87
+Your letter grade is: B
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[01;32mjr232@goldvm16[00m:[01;34m~/Desktop/cs214/projects/03[00m$ ruby grade_calc.rb
+Enter a numeric grade between 0-100: 78
+Your letter grade is: C
+]0;jr232@goldvm16: ~/Desktop/cs214/projects/03[0
